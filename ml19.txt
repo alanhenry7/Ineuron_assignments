@@ -1,0 +1,185 @@
+### **1. K-Means Clustering with Given Data**
+
+#### Data Points: 
+5, 10, 15, 20, 25, 30, 35  
+Assume that \(k = 2\) and the two sets of initial centroids are:
+
+- **Set 1 Centroids:** 15, 32
+- **Set 2 Centroids:** 12, 30
+
+#### a) Create Two Clusters for Each Set of Centroids:
+
+##### **First Set of Centroids (15, 32):**
+
+1. **Cluster 1 (Centroid 15):** 
+   - Assign the data points to the cluster whose centroid is closest.
+   - Data points closer to 15 are: 5, 10, 15
+2. **Cluster 2 (Centroid 32):** 
+   - Data points closer to 32 are: 20, 25, 30, 35
+
+So, the clusters would be:
+
+- **Cluster 1:** 5, 10, 15
+- **Cluster 2:** 20, 25, 30, 35
+
+##### **Second Set of Centroids (12, 30):**
+
+1. **Cluster 1 (Centroid 12):**
+   - Data points closer to 12 are: 5, 10, 15
+2. **Cluster 2 (Centroid 30):**
+   - Data points closer to 30 are: 20, 25, 30, 35
+
+So, the clusters would again be:
+
+- **Cluster 1:** 5, 10, 15
+- **Cluster 2:** 20, 25, 30, 35
+
+#### b) Calculate the SSE for Each Set of Centroids:
+
+SSE is calculated by summing the squared distances between each data point and the centroid of its respective cluster.
+
+##### **For Set 1 (Centroids 15, 32):**
+
+- **Cluster 1 (Centroid 15):**
+  \[
+  SSE_1 = (5 - 15)^2 + (10 - 15)^2 + (15 - 15)^2 = 100 + 25 + 0 = 125
+  \]
+  
+- **Cluster 2 (Centroid 32):**
+  \[
+  SSE_2 = (20 - 32)^2 + (25 - 32)^2 + (30 - 32)^2 + (35 - 32)^2 = 144 + 49 + 4 + 9 = 206
+  \]
+
+- **Total SSE for Set 1:**
+  \[
+  SSE_{\text{total}} = 125 + 206 = 331
+  \]
+
+##### **For Set 2 (Centroids 12, 30):**
+
+- **Cluster 1 (Centroid 12):**
+  \[
+  SSE_1 = (5 - 12)^2 + (10 - 12)^2 + (15 - 12)^2 = 49 + 4 + 9 = 62
+  \]
+  
+- **Cluster 2 (Centroid 30):**
+  \[
+  SSE_2 = (20 - 30)^2 + (25 - 30)^2 + (30 - 30)^2 + (35 - 30)^2 = 100 + 25 + 0 + 25 = 150
+  \]
+
+- **Total SSE for Set 2:**
+  \[
+  SSE_{\text{total}} = 62 + 150 = 212
+  \]
+
+---
+
+### **2. How Market Basket Research Uses Association Analysis Concepts:**
+
+Market Basket Research uses **association analysis** to discover patterns or relationships between different items in a customer's shopping basket. The goal is to identify **frequent item sets** and generate **association rules**, which are statements like "If a customer buys item A, they are likely to buy item B." 
+
+- **Application:** In retail, if many customers buy both bread and butter together, retailers might place these items closer to each other in the store or offer discounts for bundling them.
+
+---
+
+### **3. Example of the Apriori Algorithm for Learning Association Rules:**
+
+**Problem:**
+Given a dataset of customer transactions, we want to find association rules.
+
+**Transactions:**
+1. {Milk, Bread, Butter}
+2. {Milk, Butter}
+3. {Bread, Butter}
+4. {Milk, Bread}
+5. {Bread, Butter, Cheese}
+
+**Step 1: Find frequent item sets with a minimum support (e.g., 60% support).**
+
+- Milk appears in 3 out of 5 transactions, so it is a frequent item.
+- Bread appears in 4 out of 5 transactions, so it is a frequent item.
+- Butter appears in 4 out of 5 transactions, so it is a frequent item.
+- The pair {Milk, Bread} appears in 2 out of 5 transactions, so it is a frequent item pair.
+
+**Step 2: Generate association rules (with minimum confidence).**
+- Rule: {Milk} ? {Bread} (Confidence: 2/3 = 66.7%)
+- Rule: {Bread} ? {Milk} (Confidence: 2/4 = 50%)
+
+---
+
+### **4. How Distance Between Clusters is Measured in Hierarchical Clustering:**
+
+- **Distance Metric:** The distance between clusters is typically measured using:
+  - **Single Link:** The shortest distance between any pair of points in the two clusters.
+  - **Complete Link:** The longest distance between any pair of points in the two clusters.
+  - **Average Link:** The average distance between all pairs of points, one from each cluster.
+  
+- **Deciding When to End Iteration:** 
+  - Clustering stops when all points belong to a single cluster or when the distance between the closest clusters exceeds a threshold.
+
+---
+
+### **5. How to Recompute Cluster Centroids in K-Means Algorithm:**
+
+- After assigning data points to clusters, the centroid of each cluster is recalculated by computing the mean of the data points assigned to that cluster.
+
+For cluster \( C_i \):
+\[
+\mu_i = \frac{1}{|C_i|} \sum_{x_j \in C_i} x_j
+\]
+Where \( |C_i| \) is the number of data points in cluster \( C_i \), and \( x_j \) is each data point in the cluster.
+
+---
+
+### **6. Method for Determining the Number of Clusters in K-Means:**
+
+- **Elbow Method:** Plot the SSE for different values of \(k\) and identify the "elbow" point where the SSE starts to decrease at a slower rate. This point suggests the optimal number of clusters.
+
+---
+
+### **7. Advantages and Disadvantages of K-Means Algorithm:**
+
+- **Advantages:**
+  - Simple and easy to implement.
+  - Efficient for large datasets.
+  - Works well when clusters are spherical and equally sized.
+
+- **Disadvantages:**
+  - Sensitive to initial centroid positions.
+  - Struggles with clusters of varying sizes and densities.
+  - Not ideal for clusters with irregular shapes.
+
+---
+
+### **8. Diagram to Demonstrate the Principle of Clustering:**
+
+A simple diagram would show several data points distributed across a 2D plane, with different colors representing different clusters. The centroids of the clusters would be marked as the centers of each group.
+
+---
+
+### **9. Second Iteration of K-Means Clustering:**
+
+- **Cluster C1 (2, 2), (4, 4), (6, 6):** New centroid:
+  \[
+  \mu_1 = \left( \frac{2 + 4 + 6}{3}, \frac{2 + 4 + 6}{3} \right) = (4, 4)
+  \]
+
+- **Cluster C2 (0, 4), (4, 0), (0, 4), (0, 4):** New centroid:
+  \[
+  \mu_2 = \left( \frac{0 + 4 + 0 + 0}{4}, \frac{4 + 0 + 4 + 4}{4} \right) = (1, 3)
+  \]
+
+- **Cluster C3 (5, 5), (9, 9):** New centroid:
+  \[
+  \mu_3 = \left( \frac{5 + 9}{2}, \frac{5 + 9}{2} \right) = (7, 7)
+  \]
+
+**SSE Calculation:**
+- Compute the SSE for each cluster by finding the squared distances between data points and their new centroids.
+
+---
+
+### **10. Diagram Explaining Defect Clustering in a Software Project:**
+
+A simple diagram would show 20 defect data points clustered into 5 groups. New defect points can then be classified into one of these 5 existing clusters based on similarity.
+!
