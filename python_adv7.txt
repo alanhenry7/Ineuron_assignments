@@ -1,0 +1,62 @@
+
+
+**Q1. What is the purpose of the try statement?**
+
+The `try` statement is used to catch exceptions in a block of code. It allows you to write code that may cause an exception and handle it in a controlled way, preventing the program from crashing. Code that may raise an exception is placed inside the `try` block, and the `except` block (or other exception handling structures) is used to handle the error.
+
+---
+
+**Q2. What are the two most popular try statement variations?**
+
+1. **Try-Except:** This variation is used to catch exceptions and handle them with custom logic. It can also catch multiple types of exceptions.
+   - Example:  
+     ```python
+     try:
+         # Code that might throw an exception
+     except SomeException:
+         # Handling the exception
+     ```
+
+2. **Try-Except-Finally:** This variation ensures that the code in the `finally` block is always executed, regardless of whether an exception was raised or not. It is typically used for cleanup tasks (e.g., closing files or releasing resources).
+   - Example:  
+     ```python
+     try:
+         # Code that might throw an exception
+     except SomeException:
+         # Handling the exception
+     finally:
+         # Cleanup code (always runs)
+     ```
+
+---
+
+**Q3. What is the purpose of the raise statement?**
+
+The `raise` statement is used to manually trigger an exception in your code. This is useful when you want to enforce certain conditions in your program and raise an error when those conditions are not met, or when you need to propagate an exception up the call stack.
+- Example:  
+  ```python
+  raise ValueError("Invalid input")
+  ```
+
+---
+
+**Q4. What does the assert statement do, and what other statement is it like?**
+
+The `assert` statement is used for debugging purposes. It tests whether a given condition is true, and if it is not, it raises an `AssertionError` with an optional message. It is often used to check that certain assumptions hold true during execution. It works like an internal check and is similar to the `if` statement, but it automatically raises an error when the condition is false.
+- Example:  
+  ```python
+  assert x > 0, "x must be greater than 0"
+  ```
+
+---
+
+**Q5. What is the purpose of the with/as argument, and what other statement is it like?**
+
+The `with/as` statement is used to simplify exception handling in situations where you need to allocate and release resources (such as file handling, database connections, etc.). It ensures that the resources are properly cleaned up after use, regardless of whether an exception occurs. It works like a context manager and is similar to using `try`-`finally` blocks for resource management but in a more concise and readable way.
+- Example:  
+  ```python
+  with open('file.txt', 'r') as file:
+      # File operations
+  # The file is automatically closed when the block ends, even if an exception occurs.
+  ```
+

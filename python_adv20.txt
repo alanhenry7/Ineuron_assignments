@@ -1,0 +1,121 @@
+
+**Q1. Compare and contrast the float and Decimal classes' benefits and drawbacks.**
+
+- **`float`**:  
+  - **Benefits**:  
+    - Fast and efficient for calculations.
+    - Works seamlessly with most Python libraries and APIs that expect floating-point numbers.
+  - **Drawbacks**:  
+    - Limited precision (typically 15-17 significant digits).
+    - Prone to rounding errors due to the binary representation of floating-point numbers (e.g., 0.1 cannot be exactly represented).
+  
+- **`Decimal`**:  
+  - **Benefits**:  
+    - Provides arbitrary precision (depends on the context settings).
+    - Better suited for financial calculations or any application where exact precision is critical (e.g., no rounding errors).
+    - Decimal values are represented as base-10 numbers, which aligns with our usual way of handling numbers.
+  - **Drawbacks**:  
+    - Slower than `float` due to the increased precision and more complex internal handling.
+    - Requires more memory for storing values.
+
+---
+
+**Q2. Decimal('1.200') and Decimal('1.2') are two objects to consider. In what sense are these the same object? Are these just two ways of representing the exact same value, or do they correspond to different internal states?**
+
+The two `Decimal` objects represent the **same numeric value**, but they **differ in their internal state**. `Decimal('1.200')` retains the exact string representation provided, including the trailing zeros, while `Decimal('1.2')` does not. However, both represent the same value of `1.2` mathematically. The key difference is that one includes extra precision in the string representation, but this does not affect the stored value internally (the value is the same).
+
+---
+
+**Q3. What happens if the equality of Decimal('1.200') and Decimal('1.2') is checked?**
+
+If you check the equality of `Decimal('1.200')` and `Decimal('1.2')` using the equality operator (`==`), the result will be **True**, because the value stored in both `Decimal` objects is the same (1.2), even though their string representations are different.
+
+```python
+Decimal('1.200') == Decimal('1.2')  # True
+```
+
+---
+
+**Q4. Why is it preferable to start a Decimal object with a string rather than a floating-point value?**
+
+It is preferable to use a string to initialize a `Decimal` object because floating-point values are subject to **rounding errors** due to their binary representation. When a `Decimal` is created from a float, you may inadvertently introduce precision errors that are not present when the `Decimal` is initialized from a string, which precisely represents the number.
+
+For example:
+```python
+Decimal(0.1)  # May introduce rounding errors
+Decimal('0.1')  # Represents the exact value 0.1
+```
+
+---
+
+**Q5. In an arithmetic phrase, how simple is it to combine Decimal objects with integers?**
+
+Combining `Decimal` objects with integers is straightforward in Python. The integer will be automatically converted to a `Decimal` when performing arithmetic with a `Decimal`. This automatic conversion ensures that precision is maintained.
+
+Example:
+```python
+from decimal import Decimal
+
+decimal_value = Decimal('1.5')
+result = decimal_value + 2  # 2 is converted to Decimal automatically
+print(result)  # Decimal('3.5')
+```
+
+---
+
+**Q6. Can Decimal objects and floating-point values be combined easily?**
+
+Combining `Decimal` objects with floating-point values is **not recommended** because floating-point values may introduce rounding errors. Python does not automatically convert between `Decimal` and `float`, so doing arithmetic between the two types will require explicit conversion.
+
+Example:
+```python
+decimal_value = Decimal('1.5')
+float_value = 2.3
+
+# This is not ideal and may cause loss of precision
+result = decimal_value + Decimal(str(float_value))
+```
+It is better to convert the float to a `Decimal` first before performing arithmetic to avoid precision issues.
+
+---
+
+**Q7. Using the Fraction class but not the Decimal class, give an example of a quantity that can be expressed with absolute precision.**
+
+The `Fraction` class can represent rational numbers exactly. For example, `Fraction(1, 3)` represents exactly **one-third**, which cannot be accurately expressed using `Decimal` or `float` due to the infinite decimal expansion of `1/3`.
+
+Example:
+```python
+from fractions import Fraction
+fraction_value = Fraction(1, 3)
+```
+
+---
+
+**Q8. Describe a quantity that can be accurately expressed by the Decimal or Fraction classes but not by a floating-point value.**
+
+The number `1/3` (one-third) is a good example. In `Decimal` or `Fraction`, it can be represented exactly, but in floating-point, it results in an approximation, typically `0.3333333...` with a finite number of digits.
+
+```python
+from decimal import Decimal
+from fractions import Fraction
+
+decimal_value = Decimal('1.3333333333333333')  # Arbitrary precision
+fraction_value = Fraction(1, 3)  # Exactly 1/3
+
+float_value = 1 / 3  # Approximation: 0.333333...
+```
+
+---
+
+**Q9. Consider the following two fraction objects: Fraction(1, 2) and Fraction(5, 10). Is the internal state of these two objects the same? Why do you think that is?**
+
+The internal state of these two `Fraction` objects is the same after they are automatically **reduced to their simplest form**. Both `Fraction(1, 2)` and `Fraction(5, 10)` represent the same rational number (1/2), and Python will automatically reduce fractions to their simplest form. Hence, both objects will have the same internal state, representing the fraction 1/2.
+
+---
+
+**Q10. How do the Fraction class and the Decimal class differ in handling precision and rounding?**
+
+The `Fraction` class represents rational numbers exactly, as fractions of integers, without any rounding. It stores the numerator and denominator and computes results with absolute precision for rational numbers. 
+
+The `Decimal` class, on the other hand, represents numbers in decimal form with arbitrary precision, but it may involve rounding when performing operations that result in numbers with more digits than the specified precision. `Decimal` supports rounding modes and can handle irrational numbers to a specified precision, but it is not exact for some irrational numbers like `sqrt(2)`.
+

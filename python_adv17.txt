@@ -1,0 +1,117 @@
+
+**Q1. Explain the difference between greedy and non-greedy syntax with visual terms in as few words as possible. What is the bare minimum effort required to transform a greedy pattern into a non-greedy one? What characters or characters can you introduce or change?**
+
+- **Greedy Syntax**: Tries to match as much as possible.
+  - Example: `.*` (matches the longest possible string)
+  
+- **Non-Greedy Syntax**: Tries to match as little as possible.
+  - Example: `.*?` (matches the shortest possible string)
+  
+To transform a greedy pattern into a non-greedy one, add a **question mark (`?`)** after the quantifier.
+- **Greedy to Non-Greedy**: `*` ? `*?`, `+` ? `+?`, `{n,m}` ? `{n,m}?`
+
+---
+
+**Q2. When exactly does greedy versus non-greedy make a difference? What if you’re looking for a non-greedy match but the only one available is greedy?**
+
+- **Greedy vs. Non-Greedy**: Greedy patterns match the longest string possible, whereas non-greedy patterns match the shortest possible string. This is crucial when you're trying to match specific patterns in a string that may have repeating sections or nested structures.
+  
+- If only a greedy match is available and you need a non-greedy match, you'll have to adjust your pattern or handle the greedy match by extracting or processing the parts you need after the match.
+
+Example:
+```python
+import re
+text = "<div>text1</div><div>text2</div>"
+# Greedy match
+greedy_result = re.findall(r'<div>.*</div>', text)
+print(greedy_result)  # ['<div>text1</div><div>text2</div>']
+# Non-greedy match
+non_greedy_result = re.findall(r'<div>.*?</div>', text)
+print(non_greedy_result)  # ['<div>text1</div>', '<div>text2</div>']
+```
+
+---
+
+**Q3. In a simple match of a string, which looks only for one match and does not do any replacement, is the use of a nontagged group likely to make any practical difference?**
+
+- **Answer**: In a simple match where only one match is found and no replacement is performed, the use of a non-tagged group does not make much practical difference. Tagged (named) groups become useful when you need to refer to specific parts of the match later, such as in replacements or when extracting multiple values.
+
+---
+
+**Q4. Describe a scenario in which using a non-tagged category would have a significant impact on the program's outcomes.**
+
+- **Answer**: A non-tagged group can impact the program when multiple groups are involved, and only the overall match matters, not the individual components. For example, when performing complex searches where only the first match is needed, using a non-tagged group may be simpler and more efficient.
+
+Example scenario: Searching for a pattern in a URL, but you only care about whether it exists, not the specific components.
+```python
+re.match(r'(https?://)([\w.-]+)', url)
+```
+The non-tagged group simplifies it as you only care if the match is successful.
+
+---
+
+**Q5. Unlike a normal regex pattern, a look-ahead condition does not consume the characters it examines. Describe a situation in which this could make a difference in the results of your program.**
+
+- **Answer**: A look-ahead condition is useful when you want to check if a certain pattern follows, without consuming those characters in the match. This is beneficial when you want to ensure a condition holds true in the context of the rest of the string but don't want to include that part in the final match.
+
+Example:
+```python
+import re
+text = "hello123world"
+# Look-ahead without consuming characters
+result = re.search(r'hello(?=\d)', text)
+print(result.group())  # Output: hello
+```
+In this case, "hello" is matched only because it's followed by digits, but "123" is not included in the match.
+
+---
+
+**Q6. In standard expressions, what is the difference between positive look-ahead and negative look-ahead?**
+
+- **Positive Look-Ahead (`(?=...)`)**: Ensures that a certain pattern can be matched **after** the current position, but does not consume any characters.
+  - Example: `\d(?=\D)` ensures there is a digit followed by a non-digit, but the non-digit is not included in the match.
+  
+- **Negative Look-Ahead (`(?!...)`)**: Ensures that a certain pattern **does not follow** the current position.
+  - Example: `\d(?!\d)` ensures there is a digit that is **not followed by another digit**.
+
+---
+
+**Q7. What is the benefit of referring to groups by name rather than by number in a standard expression?**
+
+- **Benefit**: Referring to groups by name makes the code more readable and maintainable, especially when dealing with complex regular expressions. Named groups provide clarity on what each group represents, whereas numbered groups can become confusing, especially in long patterns with many groups.
+
+Example:
+```python
+pattern = r'(?P<first_name>\w+) (?P<last_name>\w+)'
+match = re.search(pattern, "John Doe")
+print(match.group('first_name'))  # Output: John
+print(match.group('last_name'))   # Output: Doe
+```
+
+---
+
+**Q8. Can you identify repeated items within a target string using named groups, as in "The cow jumped over the moon"?**
+
+- **Answer**: Yes, named groups can be used to identify repeated items by matching the same part of a string multiple times and grouping them together. For example, you could use named groups to identify repeated words or phrases in a string.
+
+Example:
+```python
+text = "The cow jumped over the moon"
+pattern = r'(?P<word>\w+) (?P=word)'
+matches = re.findall(pattern, text)
+print(matches)  # Output: ['the']
+```
+Here, the `(?P=word)` matches the word that was previously captured in the named group `word`.
+
+---
+
+**Q9. When parsing a string, what is at least one thing that the Scanner interface does for you that the `re.findall` feature does not?**
+
+- **Answer**: The Scanner interface allows you to perform repeated matching over a string without having to manually handle the starting position for each match. It helps maintain a current position while matching, enabling you to parse through a string or stream more efficiently. Unlike `re.findall`, which returns all matches at once, a scanner lets you match items one-by-one in a controlled manner.
+
+---
+
+**Q10. Does a scanner object have to be named scanner?**
+
+- **Answer**: No, the name of a scanner object does not have to be specifically `scanner`. It can be named anything you prefer. The term "scanner" is simply a common name used to describe the object that handles the scanning or parsing process.
+

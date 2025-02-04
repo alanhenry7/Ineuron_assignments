@@ -1,0 +1,84 @@
+
+**Q1. What is the difference between `__getattr__` and `__getattribute__`?**
+
+1. **`__getattribute__`:**
+   - `__getattribute__` is called automatically when any attribute of an object is accessed, whether the attribute exists or not. It is a more general method and is called for all attribute lookups.
+   - If you define this method, it will intercept all attempts to access attributes on the object (including calls to `__getattr__` for non-existing attributes).
+   - You must be cautious when using `__getattribute__`, as it can result in infinite recursion if not handled correctly, especially when accessing attributes within the method itself.
+
+   Example:
+   ```python
+   class MyClass:
+       def __getattribute__(self, name):
+           print(f"Accessing attribute: {name}")
+           return super().__getattribute__(name)
+   ```
+
+2. **`__getattr__`:**
+   - `__getattr__` is only called when an attribute is **not found** in the object's dictionary. It is used to define default behavior for missing attributes (e.g., dynamic attribute creation or returning a default value).
+   - Unlike `__getattribute__`, `__getattr__` is only invoked for attributes that do not already exist on the object.
+
+   Example:
+   ```python
+   class MyClass:
+       def __getattr__(self, name):
+           print(f"Attribute {name} does not exist.")
+           return "default value"
+   ```
+
+---
+
+**Q2. What is the difference between properties and descriptors?**
+
+1. **Properties:**
+   - A property in Python is a built-in decorator that allows you to define methods that can be accessed like attributes. It provides a convenient way to define getter, setter, and deleter methods for an attribute.
+   - Properties are simpler to implement compared to descriptors. They are typically used to manage internal state and provide additional logic when getting or setting an attribute.
+
+   Example:
+   ```python
+   class MyClass:
+       def __init__(self, value):
+           self._value = value
+       
+       @property
+       def value(self):
+           return self._value
+       
+       @value.setter
+       def value(self, new_value):
+           self._value = new_value
+   ```
+
+2. **Descriptors:**
+   - Descriptors are more general-purpose and provide a low-level mechanism for attribute access. A descriptor is any object that implements at least one of the following methods: `__get__`, `__set__`, or `__delete__`.
+   - Descriptors allow you to control the behavior of attribute access in a more flexible and reusable way. They are used internally by Python for things like `staticmethod` and `classmethod`.
+
+   Example:
+   ```python
+   class MyDescriptor:
+       def __get__(self, instance, owner):
+           return "Accessed through descriptor"
+       
+       def __set__(self, instance, value):
+           instance._value = value
+
+   class MyClass:
+       attr = MyDescriptor()
+   ```
+
+---
+
+**Q3. What are the key differences in functionality between `__getattr__` and `__getattribute__`, as well as properties and descriptors?**
+
+1. **Differences between `__getattr__` and `__getattribute__`:**
+   - **`__getattribute__`** is invoked for every attribute access, whether the attribute exists or not. It provides more fine-grained control but requires careful handling to avoid recursion issues. It is often used when you want to intercept **all** attribute accesses.
+   - **`__getattr__`** is only called when an attribute does not exist on the object. It is specifically designed for **missing** attributes and is a simpler way to handle undefined attributes, such as providing default values or creating dynamic attributes.
+
+2. **Differences between properties and descriptors:**
+   - **Properties** are a simpler, more Pythonic way to define getter/setter logic. They are primarily used when you need to add logic for accessing or modifying instance attributes but in a concise and readable manner.
+   - **Descriptors** provide more low-level, fine-grained control over attribute access and can be used to create reusable attribute access patterns. They are used when you need to define more complex behavior for attributes (e.g., controlling access across multiple classes or implementing custom behavior for getting, setting, or deleting attributes).
+
+   **Summary of key differences:**
+   - **`__getattribute__`** intercepts all attribute access, while **`__getattr__`** only handles missing attributes.
+   - **Properties** are easy-to-use decorators for defining simple getter/setter logic, while **descriptors** offer more flexibility for controlling attribute access with the potential for reuse across different classes.
+

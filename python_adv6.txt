@@ -1,0 +1,63 @@
+
+**Q1. Describe three applications for exception processing.**
+
+1. **Error Handling:** Exception processing helps manage errors gracefully by allowing the program to continue running even after an error occurs. It helps prevent the program from crashing.
+2. **Input Validation:** Exceptions can be used to check if inputs from users or external sources meet the required format, type, or range, helping to catch unexpected or invalid input early.
+3. **Resource Management:** In scenarios such as working with files, network connections, or databases, exception handling ensures resources like files are properly closed or network connections are released even when an error occurs.
+
+---
+
+**Q2. What happens if you don't do something extra to treat an exception?**
+
+If you don't handle an exception, it will propagate up the call stack. If the exception is not caught by any function or block, it will eventually cause the program to terminate. This can lead to unhandled errors, crashes, or undefined behavior, which can be problematic, especially in production systems.
+
+---
+
+**Q3. What are your options for recovering from an exception in your script?**
+
+1. **Try-Catch Block:** You can catch the exception using a try-catch (or try-except in Python) block and handle it with custom code to recover from the error.
+2. **Retry Logic:** If an exception occurs, you might choose to retry the operation (e.g., retry a network request or file operation).
+3. **Default Values:** You can assign default values or alternative actions to handle the exception and continue processing the rest of the code.
+4. **Logging:** You can log the exception details to a file or monitor and then proceed with alternative processing or exit the function gracefully.
+
+---
+
+**Q4. Describe two methods for triggering exceptions in your script.**
+
+1. **Explicit Raising (Throwing) Exceptions:** You can manually raise exceptions in your code using the `raise` keyword (in Python) or `throw` (in other languages). This is often used to signal that something went wrong in the logic or input.
+   - Example (Python):  
+     ```python
+     raise ValueError("Invalid input")
+     ```
+
+2. **Built-in Exceptions:** Exceptions can be triggered automatically by Python or other programming environments when built-in errors occur, such as dividing by zero, accessing an undefined variable, or attempting to open a non-existent file.
+   - Example (Python):  
+     ```python
+     num = 10 / 0  # Will raise a ZeroDivisionError
+     ```
+
+---
+
+**Q5. Identify two methods for specifying actions to be executed at termination time, regardless of whether or not an exception exists.**
+
+1. **Finally Block:** The `finally` block in exception handling is used to specify code that should always execute, regardless of whether an exception occurs or not. It is often used for cleanup actions (e.g., closing files or releasing resources).
+   - Example (Python):
+     ```python
+     try:
+         # Code that may raise an exception
+     except SomeException:
+         # Handle exception
+     finally:
+         # Cleanup code that will run no matter what
+     ```
+
+2. **Context Managers (with statement):** In Python, the `with` statement is used to define a context manager, which ensures that cleanup actions are executed at the end of a block of code, regardless of whether an exception occurred.
+   - Example (Python):
+     ```python
+     with open("file.txt", "r") as file:
+         # File operations
+     # The file is automatically closed here, even if an exception occurs inside the block.
+     ```
+
+---
+

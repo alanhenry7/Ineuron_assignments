@@ -1,0 +1,67 @@
+
+**Q1. What are the two latest user-defined exception constraints in Python 3.X?**
+
+1. **Inheriting from `BaseException`:** In Python 3.X, user-defined exceptions must inherit from the `BaseException` class (or one of its subclasses, such as `Exception`). This ensures that the custom exception behaves like a standard Python exception.
+   
+2. **Providing Custom Messages:** In Python 3.X, user-defined exceptions can include custom error messages or context information by overriding the `__init__()` method. This makes the exceptions more informative and allows for better debugging.
+
+---
+
+**Q2. How are class-based exceptions that have been raised matched to handlers?**
+
+Class-based exceptions are matched to handlers based on the inheritance hierarchy. When an exception is raised, Python checks the exception type against the `except` clauses from top to bottom. The first handler that matches the exception type (or its parent class) is executed. If no handler matches, the exception is propagated further up the call stack.
+
+- Example: If a custom exception `MyException` is raised, and the handler is looking for `Exception` or `MyException`, it will match based on the inheritance chain.
+
+---
+
+**Q3. Describe two methods for attaching context information to exception artifacts.**
+
+1. **Using the `__str__` Method:** By overriding the `__str__` method in a custom exception class, you can attach context information to the string representation of the exception. This can provide detailed information when the exception is printed or logged.
+   - Example:
+     ```python
+     class MyException(Exception):
+         def __init__(self, message, context):
+             self.message = message
+             self.context = context
+         
+         def __str__(self):
+             return f"{self.message} | Context: {self.context}"
+     ```
+
+2. **Using `args`:** The `args` attribute in an exception instance can store additional context information. This allows passing multiple pieces of data when raising the exception, which can be accessed later.
+   - Example:
+     ```python
+     class MyException(Exception):
+         def __init__(self, message, context):
+             super().__init__(message)
+             self.args = (message, context)
+     ```
+
+---
+
+**Q4. Describe two methods for specifying the text of an exception object's error message.**
+
+1. **Passing a Message to the Constructor:** When raising an exception, you can pass an error message to the exception’s constructor, which can be accessed via the `__str__` method.
+   - Example:
+     ```python
+     raise MyException("An error occurred in processing.")
+     ```
+
+2. **Overriding the `__str__` Method:** For more control, you can override the `__str__` method in your exception class to return a custom error message when the exception is printed or logged.
+   - Example:
+     ```python
+     class MyException(Exception):
+         def __init__(self, message):
+             self.message = message
+         
+         def __str__(self):
+             return f"Error: {self.message}"
+     ```
+
+---
+
+**Q5. Why do you no longer use string-based exceptions?**
+
+String-based exceptions were deprecated in Python 3.X because they did not provide sufficient structure or clarity for error handling. They were just plain strings, making it difficult to handle specific exception types and to access additional context or traceback information. With class-based exceptions, Python provides better error handling with more detailed and flexible exception types, inheritance, and the ability to store additional context.
+

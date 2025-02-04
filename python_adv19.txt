@@ -1,0 +1,162 @@
+
+**Q1. Define the relationship between a class and its instances. Is it a one-to-one or a one-to-many partnership, for example?**
+
+A **class** is a blueprint for creating **instances** (objects), and there is a **one-to-many** relationship between a class and its instances. A single class can have multiple instances, each of which is a separate object created using that class. The class defines the structure and behavior shared by all instances, but each instance can hold its own data.
+
+---
+
+**Q2. What kind of data is held only in an instance?**
+
+Data that is specific to each individual object (instance) of a class is held only in the instance. This includes instance variables, which can be modified or set for each object separately. For example, attributes like a person's name or age, where each instance has its own distinct value.
+
+---
+
+**Q3. What kind of knowledge is stored in a class?**
+
+Classes store **shared knowledge** that is common to all instances of that class. This typically includes **class variables**, which hold data shared by all instances, and **methods**, which define the behaviors or functions that all instances can perform. Class methods, static methods, and other class-level attributes are examples of data and knowledge stored in the class.
+
+---
+
+**Q4. What exactly is a method, and how is it different from a regular function?**
+
+A **method** is a function that is associated with an instance of a class (or the class itself) and is defined within the class. It operates on the data contained in the instance or class. The primary difference between a method and a regular function is that a method takes at least one parameter, typically `self`, which refers to the instance of the class that the method is called on.
+
+Example of a method:
+```python
+class Dog:
+    def bark(self):
+        print("Woof!")
+```
+A **regular function** can be defined independently of any class and does not implicitly have access to instance or class-specific data.
+
+---
+
+**Q5. Is inheritance supported in Python, and if so, what is the syntax?**
+
+Yes, Python supports inheritance. Inheritance allows a class (the **subclass**) to inherit attributes and methods from another class (the **parent class**). You can define a subclass by specifying the parent class in parentheses during class definition.
+
+Syntax:
+```python
+class Parent:
+    def speak(self):
+        print("Hello")
+
+class Child(Parent):  # Child inherits from Parent
+    def greet(self):
+        print("Hi!")
+```
+The subclass can access methods and attributes of the parent class, and you can override or extend functionality as needed.
+
+---
+
+**Q6. How much encapsulation (making instance or class variables private) does Python support?**
+
+Python does not have strict encapsulation like some other languages, but it provides **name-mangling** to make variables "private." By convention, variables with a **single underscore** (e.g., `_variable`) are considered "protected" and are intended to be accessed only within the class or its subclasses. Variables with a **double underscore** (e.g., `__variable`) trigger name mangling, making them harder to access directly from outside the class (e.g., `_ClassName__variable`).
+
+Example:
+```python
+class MyClass:
+    def __init__(self):
+        self._protected = 10
+        self.__private = 20
+```
+
+While you can still access the "private" variable using name mangling (`_MyClass__private`), it's not recommended, as it's meant to be private to the class.
+
+---
+
+**Q7. How do you distinguish between a class variable and an instance variable?**
+
+- **Instance variable**: Defined within a method (usually the `__init__` method) and is associated with a specific instance of the class. It can hold unique data for each instance.
+  
+- **Class variable**: Defined within the class but outside of any method. It is shared across all instances of the class.
+
+Example:
+```python
+class Dog:
+    species = "Canis familiaris"  # Class variable
+
+    def __init__(self, name):
+        self.name = name  # Instance variable
+```
+
+In this example, `species` is a class variable shared by all instances of `Dog`, while `name` is an instance variable specific to each instance.
+
+---
+
+**Q8. When, if ever, can self be included in a class's method definitions?**
+
+The `self` parameter is always included in instance method definitions in Python. It refers to the current instance of the class, allowing the method to access or modify instance variables and other methods of that object.
+
+Example:
+```python
+class Dog:
+    def bark(self):
+        print("Woof!")
+```
+The `self` parameter is implicit when calling a method on an instance, but it is explicitly included in the method definition.
+
+---
+
+**Q9. What is the difference between the `__add__` and the `__radd__` methods?**
+
+- **`__add__`**: This is the method used for the addition operation when the left operand is an instance of the class.
+  
+- **`__radd__`**: This method is called when the **right operand** is an instance of the class, and the left operand does not support the addition operation.
+
+Python will attempt to use `__add__` first, and if it’s not available, it will attempt to use `__radd__`.
+
+Example:
+```python
+class MyNumber:
+    def __add__(self, other):
+        return self.value + other.value
+    
+    def __radd__(self, other):
+        return self.value + other  # Supports adding a number to MyNumber
+```
+
+---
+
+**Q10. When is it necessary to use a reflection method? When do you not need it, even though you support the operation in question?**
+
+A reflection method is used when you need to inspect or modify the behavior of an object dynamically at runtime. It is typically necessary when working with generic code or when the exact methods or attributes of an object are not known in advance.
+
+You don’t need to use reflection methods when the methods and behavior of an object are well-defined and known beforehand, as you can directly call the methods without introspection.
+
+---
+
+**Q11. What is the `__iadd__` method called?**
+
+The `__iadd__` method is called when you use the **in-place addition operator (`+=`)**. It allows you to modify the left operand in-place, rather than creating a new object.
+
+Example:
+```python
+class MyNumber:
+    def __init__(self, value):
+        self.value = value
+    
+    def __iadd__(self, other):
+        self.value += other
+        return self
+```
+
+---
+
+**Q12. Is the `__init__` method inherited by subclasses? What do you do if you need to customize its behavior within a subclass?**
+
+Yes, the `__init__` method is inherited by subclasses, but it can be customized by overriding it in the subclass. If you need to retain the behavior of the parent class while adding custom behavior in the subclass, you can call the parent class’s `__init__` method using `super()`.
+
+Example:
+```python
+class Parent:
+    def __init__(self, name):
+        self.name = name
+
+class Child(Parent):
+    def __init__(self, name, age):
+        super().__init__(name)  # Call the parent's __init__ method
+        self.age = age
+```
+
+In this example, `Child` overrides the `__init__` method but still calls `super().__init__(name)` to ensure that the `name` attribute is initialized by the parent class.
