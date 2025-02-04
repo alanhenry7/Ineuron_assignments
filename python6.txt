@@ -1,0 +1,77 @@
+**Assignment Questions and Answers**  
+
+1. **What are escape characters, and how do you use them?**  
+   Escape characters are special characters used to insert characters that are difficult to include in a string, such as newlines or quotes. They are written with a backslash (`\`).  
+   Example:  
+   ```python
+   print("This is a \"quoted\" word.")  # Output: This is a "quoted" word.
+   ```  
+
+2. **What do the escape characters `\n` and `\t` stand for?**  
+   - `\n` stands for a **newline** (moves to the next line).  
+   - `\t` stands for a **tab space**.  
+
+3. **What is the way to include backslash characters in a string?**  
+   To include a backslash (`\`), escape it using another backslash:  
+   ```python
+   print("This is a backslash: \\")
+   ```  
+
+4. **The string `"Howl's Moving Castle"` is a correct value. Why isn't the single quote character in the word `Howl's` not escaped a problem?**  
+   The string is enclosed in **double quotes (`" "`)**, so the single quote (`'`) inside does not cause an issue. If the string were enclosed in single quotes (`' '`), the quote inside would need to be escaped.  
+
+5. **How do you write a string of newlines if you don’t want to use the `\n` character?**  
+   Use triple quotes (`""" """` or `''' '''`) to create a multiline string:  
+   ```python
+   print("""This is
+   a multiline
+   string.""")
+   ```  
+
+6. **What are the values of the given expressions?**  
+   ```python
+   'Hello, world!'[1]      # 'e'
+   'Hello, world!'[0:5]    # 'Hello'
+   'Hello, world!'[:5]     # 'Hello'
+   'Hello, world!'[3:]     # 'lo, world!'
+   ```  
+
+7. **What are the values of the following expressions?**  
+   ```python
+   'Hello'.upper()            # 'HELLO'
+   'Hello'.upper().isupper()  # True
+   'Hello'.upper().lower()    # 'hello'
+   ```  
+
+8. **What are the values of the following expressions?**  
+   ```python
+   'Remember, remember, the fifth of July.'.split()  
+   # ['Remember,', 'remember,', 'the', 'fifth', 'of', 'July.']
+
+   '-'.join('There can only one.'.split())  
+   # 'There-can-only-one.'
+   ```  
+
+9. **What are the methods for right-justifying, left-justifying, and centering a string?**  
+   - **Right-justify**: `rjust(width)`  
+   - **Left-justify**: `ljust(width)`  
+   - **Center**: `center(width)`  
+   ```python
+   text = "Hello"
+   print(text.rjust(10))  # '     Hello'
+   print(text.ljust(10))  # 'Hello     '
+   print(text.center(10)) # '  Hello   '
+   ```  
+
+10. **What is the best way to remove whitespace characters from the start or end?**  
+    - `strip()` removes whitespace from both ends.  
+    - `lstrip()` removes whitespace from the left.  
+    - `rstrip()` removes whitespace from the right.  
+    ```python
+    text = "  Hello  "
+    print(text.strip())  # 'Hello'
+    print(text.lstrip()) # 'Hello  '
+    print(text.rstrip()) # '  Hello'
+    ```  
+
+Now you can copy and paste everything easily! 🚀 Let me know if you need any modifications. 😊
