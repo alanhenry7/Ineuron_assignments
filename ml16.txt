@@ -1,0 +1,167 @@
+### **1. Difference Between Dependent and Independent Variables in a Linear Equation:**
+
+- **Dependent Variable (Y):**  
+  This is the variable that you are trying to predict or explain. It depends on the value of the independent variable(s).
+  
+- **Independent Variable (X):**  
+  This is the variable that you use to predict or explain the dependent variable. It is assumed to influence or cause changes in the dependent variable.
+
+For example, in a linear equation \( Y = 2X + 1 \), \( Y \) is the dependent variable and \( X \) is the independent variable.
+
+---
+
+### **2. Simple Linear Regression Concept & Example:**
+
+**Simple Linear Regression** is a statistical method used to model the relationship between a dependent variable and a single independent variable by fitting a linear equation to the observed data. The equation typically looks like:
+\[
+Y = b_0 + b_1X + \epsilon
+\]
+Where:
+- \( Y \) is the dependent variable,
+- \( X \) is the independent variable,
+- \( b_0 \) is the intercept,
+- \( b_1 \) is the slope,
+- \( \epsilon \) is the error term.
+
+**Example:**  
+If you're predicting someone's weight (Y) based on their height (X), a simple linear regression model might look like:
+\[
+\text{Weight} = 50 + 0.5 \times \text{Height}
+\]
+This means that for every additional unit of height, the weight increases by 0.5 units.
+
+---
+
+### **3. Slope in Linear Regression:**
+
+The **slope** (\( b_1 \)) in a linear regression model represents the change in the dependent variable \( Y \) for each one-unit change in the independent variable \( X \). It shows the relationship between the two variables — whether they move in the same direction (positive slope) or in opposite directions (negative slope).
+
+---
+
+### **4. Graph's Slope Calculation (Given Points (3,2) and (2,2)):**
+
+The formula for calculating the slope \( m \) between two points \( (x_1, y_1) \) and \( (x_2, y_2) \) is:
+\[
+m = \frac{y_2 - y_1}{x_2 - x_1}
+\]
+Using the given points \( (3,2) \) and \( (2,2) \):
+\[
+m = \frac{2 - 2}{2 - 3} = \frac{0}{-1} = 0
+\]
+So, the slope of this line is **0**.
+
+---
+
+### **5. Conditions for a Positive Slope in Linear Regression:**
+
+In linear regression, the slope will be positive if the dependent variable increases as the independent variable increases. This means that as the value of \( X \) increases, \( Y \) also increases. In other words, there is a **positive correlation** between the two variables.
+
+---
+
+### **6. Conditions for a Negative Slope in Linear Regression:**
+
+In linear regression, the slope will be negative if the dependent variable decreases as the independent variable increases. This means that as the value of \( X \) increases, \( Y \) decreases. In other words, there is a **negative correlation** between the two variables.
+
+---
+
+### **7. Multiple Linear Regression and How It Works:**
+
+**Multiple Linear Regression** is a statistical method that models the relationship between a dependent variable and two or more independent variables by fitting a linear equation to the data. The model equation typically looks like:
+\[
+Y = b_0 + b_1X_1 + b_2X_2 + \dots + b_nX_n + \epsilon
+\]
+Where:
+- \( Y \) is the dependent variable,
+- \( X_1, X_2, \dots, X_n \) are independent variables,
+- \( b_0 \) is the intercept, and
+- \( b_1, b_2, \dots, b_n \) are the slopes (coefficients) for each independent variable.
+
+This method is used when you want to predict the dependent variable based on several factors. For example, predicting house prices based on multiple factors like size, number of rooms, location, etc.
+
+---
+
+### **8. Number of Squares Due to Error in Multiple Linear Regression:**
+
+The **sum of squares due to error (SSE)** represents the total variability in the dependent variable that cannot be explained by the independent variables in the model. It’s calculated as:
+\[
+SSE = \sum (Y_{\text{observed}} - Y_{\text{predicted}})^2
+\]
+Where \( Y_{\text{observed}} \) is the actual value and \( Y_{\text{predicted}} \) is the predicted value from the model.
+
+---
+
+### **9. Number of Squares Due to Regression in Multiple Linear Regression:**
+
+The **sum of squares due to regression (SSR)** represents the amount of variability in the dependent variable that is explained by the independent variables in the model. It’s calculated as:
+\[
+SSR = \sum (Y_{\text{predicted}} - Y_{\text{mean}})^2
+\]
+Where \( Y_{\text{mean}} \) is the mean of the observed data.
+
+---
+
+### **10. Multicollinearity in a Regression Equation:**
+
+**Multicollinearity** occurs when two or more independent variables in a regression model are highly correlated. This makes it difficult to determine the individual effect of each variable on the dependent variable, leading to unreliable estimates of regression coefficients. High multicollinearity can inflate standard errors and lead to incorrect conclusions.
+
+---
+
+### **11. Heteroskedasticity and What It Means:**
+
+**Heteroskedasticity** refers to the situation in regression where the variance of the errors (residuals) is not constant across all levels of the independent variable(s). In other words, the spread of the residuals varies as the value of the independent variable changes. This can lead to inefficient estimates and affect the validity of statistical tests.
+
+---
+
+### **12. Ridge Regression Concept:**
+
+**Ridge Regression** is a type of regularized linear regression where an additional penalty term (L2 regularization) is added to the cost function. This penalty term discourages large values for the regression coefficients. Ridge regression helps prevent overfitting by shrinking the coefficients, especially when there is multicollinearity or when the model is too complex.
+
+The cost function for ridge regression is:
+\[
+J(\theta) = \sum (y_i - \hat{y_i})^2 + \lambda \sum \theta_j^2
+\]
+Where \( \lambda \) is the regularization parameter.
+
+---
+
+### **13. Lasso Regression Concept:**
+
+**Lasso Regression** (Least Absolute Shrinkage and Selection Operator) is another form of regularized linear regression that adds a penalty term based on the **absolute values** of the regression coefficients (L1 regularization). The goal is not only to prevent overfitting but also to perform feature selection by shrinking some coefficients to zero, effectively removing them from the model.
+
+The cost function for lasso regression is:
+\[
+J(\theta) = \sum (y_i - \hat{y_i})^2 + \lambda \sum |\theta_j|
+\]
+Where \( \lambda \) is the regularization parameter.
+
+---
+
+### **14. Polynomial Regression and How It Works:**
+
+**Polynomial Regression** is a form of regression where the relationship between the independent variable and the dependent variable is modeled as an **nth-degree polynomial**. This method is used when the data shows a nonlinear relationship. The equation for polynomial regression is:
+\[
+Y = b_0 + b_1X + b_2X^2 + b_3X^3 + \dots + b_nX^n + \epsilon
+\]
+Polynomial regression can capture more complex patterns than simple linear regression, but it is prone to overfitting if the degree of the polynomial is too high.
+
+---
+
+### **15. Basis Function:**
+
+A **basis function** is a transformation applied to the original input features in order to represent them in a new space. In polynomial regression, for example, the basis functions are the powers of the input variable \( X \) (e.g., \( X^2, X^3 \)). These functions allow the model to capture nonlinear relationships.
+
+---
+
+### **16. How Logistic Regression Works:**
+
+**Logistic Regression** is used for binary classification tasks, where the dependent variable is categorical and has two possible outcomes (e.g., 0 or 1). Instead of fitting a line as in linear regression, logistic regression fits a **logistic curve** (sigmoid function) to the data. The model predicts the probability that a given input belongs to a particular class.
+
+The logistic regression equation is:
+\[
+P(Y = 1 | X) = \frac{1}{1 + e^{-(b_0 + b_1X)}}
+\]
+Where:
+- \( P(Y = 1 | X) \) is the probability that \( Y = 1 \) given \( X \),
+- \( b_0 \) and \( b_1 \) are the model coefficients,
+- \( e \) is the base of the natural logarithm.
+

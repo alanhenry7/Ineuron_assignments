@@ -1,0 +1,95 @@
+
+### **1. What is prior probability? Give an example.**
+
+**Prior probability** refers to the initial probability of an event or hypothesis before new evidence or data is considered. It represents what is known about the event prior to any observation or analysis.
+
+**Example:**  
+Let’s say you're trying to predict whether it will rain tomorrow. You might start with prior knowledge that it rains 30% of the time in your region. Therefore, the prior probability of rain tomorrow would be **P(Rain) = 0.3**.
+
+---
+
+### **2. What is posterior probability? Give an example.**
+
+**Posterior probability** is the probability of a hypothesis being true after considering new evidence or data. It is calculated using Bayes' theorem.
+
+**Example:**  
+If you observe that dark clouds are forming in the sky, and you know that 70% of the time when dark clouds form, it rains, the posterior probability is the updated probability of rain, given the new evidence (the presence of dark clouds). Using Bayes' theorem:
+\[
+P(Rain | Dark Clouds) = \frac{P(Dark Clouds | Rain) \cdot P(Rain)}{P(Dark Clouds)}
+\]
+This gives the probability of rain, considering the new evidence of dark clouds.
+
+---
+
+### **3. What is likelihood probability? Give an example.**
+
+**Likelihood probability** is the probability of observing the data given a specific hypothesis or model. It is used in statistical inference to find the best model that fits the data.
+
+**Example:**  
+If you observe that 8 out of 10 times, the weather is rainy when dark clouds appear, the likelihood of observing dark clouds, given that it will rain, is **P(Dark Clouds | Rain) = 0.8**.
+
+---
+
+### **4. What is Naïve Bayes classifier? Why is it named so?**
+
+A **Naïve Bayes classifier** is a probabilistic classifier based on Bayes' theorem, which assumes that the features used for classification are independent (naive assumption). This simplification makes it computationally efficient and effective for many classification tasks, even if the independence assumption does not hold perfectly.
+
+**Why it’s named "Naïve":**  
+It is called “naïve” because it assumes that all features are independent given the class label, which is often unrealistic but simplifies the calculations significantly.
+
+---
+
+### **5. What is the optimal Bayes classifier?**
+
+The **optimal Bayes classifier** is a classification model that minimizes the classification error by choosing the class with the highest posterior probability given the data. It is the theoretical best classifier, as it uses the true distribution of the data. The optimal decision rule for classification is to assign an instance to the class with the maximum **P(Class | Data)**.
+
+---
+
+### **6. Write any two features of Bayesian learning methods.**
+
+1. **Probabilistic Framework**: Bayesian learning treats all parameters and predictions as probabilistic, providing a model of uncertainty and allowing for better handling of incomplete data.
+   
+2. **Prior Knowledge Integration**: Bayesian methods can incorporate prior knowledge or beliefs about the parameters, which helps guide learning, especially when data is sparse.
+
+---
+
+### **7. Define the concept of consistent learners.**
+
+A **consistent learner** is one that, given enough data, will converge to the correct model or hypothesis. As the size of the training data increases, the learner’s performance improves, and it approaches the optimal solution.
+
+---
+
+### **8. Write any two strengths of Bayes classifier.**
+
+1. **Works well with small datasets**: Naïve Bayes classifiers perform well even with small amounts of data because of the way prior probabilities are used to update beliefs about classes.
+   
+2. **Fast and efficient**: Due to the assumption of feature independence, Naïve Bayes is computationally efficient, making it scalable to large datasets.
+
+---
+
+### **9. Write any two weaknesses of Bayes classifier.**
+
+1. **Strong independence assumption**: The Naïve Bayes classifier assumes all features are independent, which is rarely true in real-world data. This can lead to poor performance when features are correlated.
+   
+2. **Limited expressiveness**: Naïve Bayes models may struggle with complex decision boundaries because they are based on simple probabilistic rules that do not capture interactions between features well.
+
+---
+
+### **10. Explain how Naïve Bayes classifier is used for:**
+
+#### 1. **Text Classification:**
+
+Naïve Bayes is widely used in text classification, such as spam detection or sentiment analysis. The algorithm treats each word in the document as a feature and assumes that words are conditionally independent given the class label. The probability of a document belonging to a particular class is computed using the Bayes' theorem:
+\[
+P(Class | Document) = \frac{P(Document | Class) \cdot P(Class)}{P(Document)}
+\]
+Where \(P(Document | Class)\) is computed as the product of the probabilities of individual words occurring in the document.
+
+#### 2. **Spam Filtering:**
+
+For **spam filtering**, Naïve Bayes is used by treating each word in an email as a feature and classifying emails as either spam or not spam. The model calculates the probability of each email being spam or not spam given the words in the email, and assigns the label based on the higher probability.
+
+#### 3. **Market Sentiment Analysis:**
+
+In **market sentiment analysis**, Naïve Bayes is used to classify the sentiment of text data (such as tweets, reviews, etc.) into categories like "positive," "negative," or "neutral." Each word or feature in the text corresponds to a particular sentiment, and the model calculates the posterior probability of each sentiment based on the words in the text.
+

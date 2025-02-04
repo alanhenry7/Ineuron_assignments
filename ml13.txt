@@ -1,0 +1,150 @@
+### **1. Example of Prior, Posterior, and Likelihood:**
+
+Let's say you're trying to predict whether it will rain tomorrow based on some observations.
+
+- **Prior Probability:**  
+  Before looking at any evidence (such as weather patterns), you know that it rains 30% of the time in your region.  
+  **P(Rain) = 0.30**  
+
+- **Likelihood:**  
+  Suppose you observe that the sky is cloudy tomorrow. You know that when it rains, the sky is cloudy 80% of the time.  
+  **P(Cloudy | Rain) = 0.80**
+
+- **Posterior Probability:**  
+  After seeing that the sky is cloudy, you want to update your belief about the likelihood of rain. Using Bayes’ theorem, you combine the prior and likelihood to calculate the posterior probability of rain given that it’s cloudy:
+  \[
+  P(Rain | Cloudy) = \frac{P(Cloudy | Rain) \cdot P(Rain)}{P(Cloudy)}
+  \]
+
+---
+
+### **2. What Role Does Bayes' Theorem Play in Concept Learning?**
+
+Bayes’ theorem plays a critical role in concept learning by updating our beliefs or hypotheses about a concept based on observed evidence. It allows us to compute the **posterior probability** of a concept or class given the observed data (evidence). In concept learning, this helps the system to refine its predictions as new data is observed.
+
+For example, in a classification problem, Bayes' theorem helps in updating the likelihood of each class label based on the features (data) of the input, leading to the selection of the most probable class.
+
+---
+
+### **3. Example of Naïve Bayes Classifier in Real Life:**
+
+**Spam Filtering:**  
+Naïve Bayes is widely used in spam email filtering. Emails are classified as "spam" or "not spam" based on the words in the email (features). Each word is treated as independent of the others (naïve assumption), and the classifier computes the probability of the email being spam or not spam using Bayes’ theorem. The email is classified into the class with the highest posterior probability.
+
+---
+
+### **4. Can Naïve Bayes Classifier Be Used on Continuous Numeric Data? How?**
+
+Yes, Naïve Bayes can be used on continuous data, though the assumption of independence still applies. To handle continuous data, Naïve Bayes typically assumes that the data for each class follows a **Gaussian distribution** (i.e., a normal distribution). The parameters of the distribution (mean and variance) are estimated for each feature, and the likelihood of the data under each class is computed using the probability density function (PDF) of the normal distribution.
+
+**Formula:**
+\[
+P(x|C) = \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left( -\frac{(x - \mu)^2}{2\sigma^2} \right)
+\]
+Where \(x\) is the feature, \(C\) is the class, \(\mu\) is the mean, and \(\sigma\) is the standard deviation.
+
+---
+
+### **5. What are Bayesian Belief Networks, and How Do They Work? What Are Their Applications?**
+
+**Bayesian Belief Networks (BBNs)** are directed acyclic graphs where each node represents a random variable, and the edges represent conditional dependencies between variables. They model the joint probability distribution of a set of variables and are useful for reasoning under uncertainty.
+
+BBNs work by encoding probabilistic relationships between variables and can compute conditional probabilities efficiently. By applying Bayes' theorem, they allow for updating beliefs in the network when new evidence is observed.
+
+**Applications:**
+- Medical diagnosis
+- Risk assessment
+- Decision support systems
+- Fault detection systems
+
+They are powerful tools for reasoning about uncertainty and can resolve a wide range of issues, particularly in complex systems with many interdependent variables.
+
+---
+
+### **6. Airport Screening System: Probability of Alarm for an Intruder**
+
+Given:
+- P(A = 1 | I = 1) = 0.98 (Probability of alarm when there is an intruder)
+- P(A = 1 | I = 0) = 0.001 (Probability of alarm when there is no intruder)
+- P(I = 1) = 0.00001 (Probability of an intruder)
+
+Using **Bayes' Theorem**, we can calculate the **posterior probability** that an alarm would trigger when an individual is actually an intruder.
+
+We want to find P(A = 1 | I = 1).
+
+Since this is directly given:
+**P(A = 1 | I = 1) = 0.98**
+
+---
+
+### **7. Antibiotic Resistance Test: Probability a Person is Actually Immune Given Positive Test**
+
+Given:
+- False positive rate = 1% (P(T = 1 | I = 0) = 0.01)
+- False negative rate = 5% (P(T = 0 | I = 1) = 0.05)
+- P(I = 1) = 0.02 (Probability that someone is antibiotic-resistant)
+
+We need to calculate **P(I = 1 | T = 1)** (the probability the person is immune given a positive test result). We use Bayes' theorem:
+
+\[
+P(I = 1 | T = 1) = \frac{P(T = 1 | I = 1) \cdot P(I = 1)}{P(T = 1)}
+\]
+Where:
+- \(P(T = 1 | I = 1) = 0.95\) (True positive rate)
+- \(P(T = 1 | I = 0) = 0.01\) (False positive rate)
+
+The total probability \(P(T = 1)\) is computed using the law of total probability:
+\[
+P(T = 1) = P(T = 1 | I = 1) \cdot P(I = 1) + P(T = 1 | I = 0) \cdot P(I = 0)
+\]
+
+---
+
+### **8. Exam Problem Solving:**
+
+Given:
+- P(A) = 0.30, P(B) = 0.20, P(C) = 0.50
+- The student solved 9/10 type A, 2/10 type B, and 6/10 type C problems.
+
+#### 1. Likelihood of Solving the Exam Problem:
+To calculate the likelihood that the student can solve the exam problem, we compute the total likelihood based on the probabilities of solving problems in forms A, B, and C.
+
+#### 2. Likelihood the Problem Was Form A Given the Solution:
+We use Bayes' theorem to calculate:
+\[
+P(A | \text{solved}) = \frac{P(\text{solved} | A) \cdot P(A)}{P(\text{solved})}
+\]
+Where \(P(\text{solved})\) is the total probability of solving a problem across all forms.
+
+---
+
+### **9. CCTV System in the Bank:**
+
+#### 1. Number of Customers in 10 Hours:
+Each 5-minute period has a 5% chance of a customer coming in. In 10 hours (600 minutes), there are 120 such 5-minute periods. So, the expected number of customers in 10 hours is:
+\[
+120 \times 0.05 = 6
+\]
+
+#### 2. Fake and Missed Photographs:
+- **Fake photographs**: The probability of no customer and the camera detecting movement is 10%. So, the expected number of fake photographs is:
+\[
+120 \times 0.95 \times 0.1 = 11.4
+\]
+- **Missed photographs**: The probability of a customer and the camera failing to detect them is 1%. So, the expected number of missed photographs is:
+\[
+120 \times 0.05 \times 0.01 = 0.06
+\]
+
+#### 3. Likelihood of a Customer Given a Photograph:
+We apply Bayes’ theorem to find the probability of a customer given a photograph:
+\[
+P(\text{Customer | Photograph}) = \frac{P(\text{Photograph | Customer}) \cdot P(\text{Customer})}{P(\text{Photograph})}
+\]
+
+---
+
+### **10. Conditional Probability Table for Won Toss in a Bayesian Belief Network:**
+
+A **Bayesian Belief Network** would consist of nodes representing different variables (e.g., toss outcome, weather conditions, etc.), with edges representing conditional dependencies. The conditional probability table (CPT) would show the probability of winning the toss given various other conditions (e.g., previous performance, toss types).
+
