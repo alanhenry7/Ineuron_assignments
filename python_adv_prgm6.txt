@@ -1,0 +1,104 @@
+
+**Question 1: Find the letter added to `t`.**
+
+```python
+def find_the_difference(s, t):
+    return chr(sum(ord(c) for c in t) - sum(ord(c) for c in s))
+
+# Test Cases
+print(find_the_difference("abcd", "abcde"))  # ? "e"
+print(find_the_difference("", "y"))  # ? "y"
+print(find_the_difference("ae", "aea"))  # ? "a"
+```
+
+Explanation: This solution calculates the sum of the ASCII values of the characters in both strings and returns the character corresponding to the difference. The sum of ASCII values of `t` will be greater by exactly the ASCII value of the added character.
+
+---
+
+**Question 2: Count data types in unlimited arguments.**
+
+```python
+def count_datatypes(*args):
+    counts = [0] * 6
+    for arg in args:
+        if isinstance(arg, int):
+            counts[0] += 1
+        elif isinstance(arg, str):
+            counts[1] += 1
+        elif isinstance(arg, bool):
+            counts[2] += 1
+        elif isinstance(arg, list):
+            counts[3] += 1
+        elif isinstance(arg, tuple):
+            counts[4] += 1
+        elif isinstance(arg, dict):
+            counts[5] += 1
+    return counts
+
+# Test Cases
+print(count_datatypes(1, 45, "Hi", False))  # ? [2, 1, 1, 0, 0, 0]
+print(count_datatypes([10, 20], ("t", "Ok"), 2, 3, 1))  # ? [3, 0, 0, 1, 1, 0]
+print(count_datatypes("Hello", "Bye", True, True, False, {"1": "One", "2": "Two"}, [1, 3], {"Brayan": 18}, 25, 23))  # ? [2, 2, 3, 1, 0, 2]
+print(count_datatypes(4, 21, ("ES", "EN"), ("a", "b"), False, [1, 2, 3], [4, 5, 6]))  # ? [2, 0, 1, 2, 2, 0]
+```
+
+Explanation: This solution checks the type of each argument and increments the corresponding counter in a list based on the type (integer, string, boolean, list, tuple, or dictionary).
+
+---
+
+**Question 3: Fibonacci string generation.**
+
+```python
+def fib_str(n, chars):
+    result = [chars[0], chars[1]]
+    while len(result) < n:
+        result.append(result[-2] + result[-1])
+    return ', '.join(result[:n])
+
+# Test Cases
+print(fib_str(3, ["j", "h"]))  # ? "j, h, hj"
+print(fib_str(5, ["e", "a"]))  # ? "e, a, ae, aea, aeaae"
+print(fib_str(6, ["n", "k"]))  # ? "n, k, kn, knk, knkkn, knkknknk"
+```
+
+Explanation: We start with the two initial characters and iteratively append the next string formed by concatenating the last two strings. The process continues until we have `n` strings, and we return the result as a comma-separated string.
+
+---
+
+**Question 4: Find the number of ones, threes, and nines.**
+
+```python
+def ones_threes_nines(num):
+    nines = num // 9
+    num %= 9
+    threes = num // 3
+    num %= 3
+    ones = num
+    return f"nines:{nines}, threes:{threes}, ones:{ones}"
+
+# Test Cases
+print(ones_threes_nines(10))  # ? "nines:1, threes:0, ones:1"
+print(ones_threes_nines(15))  # ? "nines:1, threes:2, ones:0"
+print(ones_threes_nines(22))  # ? "nines:2, threes:1, ones:1"
+```
+
+Explanation: This solution works by first calculating how many times `9` fits into the number, then the remaining number is divided by `3`, and whatever is left is counted as `1`s. The result is formatted as requested.
+
+---
+
+**Question 5: Fibonacci sequence value at index `n` (non-recursive).**
+
+```python
+def fib(n):
+    a, b = 0, 1
+    for _ in range(n):
+        a, b = b, a + b
+    return a
+
+# Test Cases
+print(fib(6))  # ? 8
+print(fib(1))  # ? 1
+print(fib(2))  # ? 1
+```
+
+Explanation: This solution uses an iterative approach to calculate the Fibonacci sequence up to the `n`-th index. We start with `0` and `1` and iteratively update the values until we reach the desired index.

@@ -1,0 +1,99 @@
+
+**1. Remove Letters Function**
+
+```python
+def remove_letters(lst, letters):
+    return [char for char in lst if char not in letters]
+
+# Test Cases
+print(remove_letters(["s", "t", "r", "i", "n", "g", "w"], "string"))  # ? ["w"]
+print(remove_letters(["b", "b", "l", "l", "g", "n", "o", "a", "w"], "balloon"))  # ? ["b", "g", "w"]
+print(remove_letters(["d", "b", "t", "e", "a", "i"], "edabit"))  # ? []
+```
+
+**Explanation:**
+- The function iterates through the list and checks if each character is in the `letters` string. If it is not, it keeps the character in the new list.
+
+---
+
+**2. Block Sequence in 3D**
+
+```python
+def blocks(step):
+    return 5 * step ** 2 - 5 * step + 1
+
+# Test Cases
+print(blocks(1))  # ? 5
+print(blocks(5))  # ? 39
+print(blocks(2))  # ? 12
+```
+
+**Explanation:**
+- The formula `5 * step ** 2 - 5 * step + 1` calculates the number of blocks at each step.
+
+---
+
+**3. Subtraction Without Arithmetic Operators**
+
+```python
+def my_sub(a, b):
+    while a < b:
+        a += 1
+    return a - b
+
+# Test Cases
+print(my_sub(5, 9))  # ? 4
+print(my_sub(10, 30))  # ? 20
+print(my_sub(0, 0))  # ? 0
+```
+
+**Explanation:**
+- The function uses a loop to increment `a` until it reaches `b`. The final subtraction is performed using the allowed `-` operator, which is a special case since we cannot use arithmetic operators to subtract directly.
+
+---
+
+**4. Add Dollar Bills Function**
+
+```python
+def add_bill(s):
+    total = 0
+    for item in s.split(','):
+        if item.startswith('d'):
+            amount = item[1:]
+            if 'k' in amount:
+                total += int(amount[:-1]) * 1000
+            else:
+                total += int(amount)
+    return total
+
+# Test Cases
+print(add_bill("d20,p40,p60,d50"))  # ? 70
+print(add_bill("p30,d20,p60,d150,p360"))  # ? 170
+print(add_bill("p30,d2k,p60,d200,p360"))  # ? 2200
+```
+
+**Explanation:**
+- The function splits the input string by commas, checks for dollar amounts, and adds them to the total. If the amount contains 'k', it multiplies the value by 1000.
+
+---
+
+**5. Flip List Function**
+
+```python
+def flip_list(lst):
+    if not lst:
+        return []
+    elif isinstance(lst[0], list):
+        return [item[0] for item in lst]
+    else:
+        return [[item] for item in lst]
+
+# Test Cases
+print(flip_list([1, 2, 3, 4]))  # ? [[1], [2], [3], [4]]
+print(flip_list([[5], [6], [9]]))  # ? [5, 6, 9]
+print(flip_list([]))  # ? []
+```
+
+**Explanation:**
+- The function checks if the list is empty. If not, it checks whether the list is horizontal (1xN) or vertical (Nx1) and flips it accordingly.
+

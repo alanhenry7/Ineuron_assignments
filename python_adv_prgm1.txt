@@ -1,0 +1,99 @@
+
+**Question 1: Function to calculate score based on symbols in a list of lists.**
+
+```python
+def check_score(lst):
+    symbol_values = {
+        "#": 5,
+        "O": 3,
+        "X": 1,
+        "!": -1,
+        "!!": -3,
+        "!!!": -5
+    }
+    
+    total_score = 0
+    for sublist in lst:
+        for symbol in sublist:
+            total_score += symbol_values.get(symbol, 0)
+    
+    return max(total_score, 0)  # If the score is negative, return 0
+
+# Test Cases
+print(check_score([["#", "!"], ["!!", "X"]]))  # ? 2
+print(check_score([["!!!", "O", "!"], ["X", "#", "!!!"], ["!!", "X", "O"]]))  # ? 0
+```
+
+---
+
+**Question 2: Function to calculate the number of permutations (combinations).**
+
+```python
+import math
+
+def combinations(*args):
+    total_combinations = 1
+    for num in args:
+        total_combinations *= num
+    return total_combinations
+
+# Test Cases
+print(combinations(2, 3))  # ? 6
+print(combinations(3, 7, 4))  # ? 84
+print(combinations(2, 3, 4, 5))  # ? 120
+```
+
+---
+
+**Question 3: Function to encode a string to Morse code.**
+
+```python
+char_to_dots = {
+    'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+    'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+    'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--', 'Z': '--..', ' ': ' ', '0': '-----', '1': '.----', '2': '..---',
+    '3': '...--', '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.', '&': '.-...', "'": '.----.',
+    '@': '.--.-.', ')': '-.--.-', '(': '-.--.', ':': '---...', ',': '--..--', '=': '-...-', '!': '-.-.--', '.': '.-.-.-',
+    '-': '-....-', '+': '.-.-.', '"': '.-..-.', '?': '..--..', '/': '-..-.'
+}
+
+def encode_morse(s):
+    return ' '.join(char_to_dots.get(c.upper(), '') for c in s)
+
+# Test Cases
+print(encode_morse("EDABBIT CHALLENGE"))  # ? ". -.. .- -... -... .. - -.-. .... .- .-.. .-.. . -. --."
+print(encode_morse("HELP ME !"))  # ? ".... . .-.. .--. -- . -.-.--"
+```
+
+---
+
+**Question 4: Function to check if a number is prime.**
+
+```python
+def prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Test Cases
+print(prime(7))  # ? True
+print(prime(56963))  # ? True
+print(prime(5151512515524))  # ? False
+```
+
+---
+
+**Question 5: Function to convert a word to a boolean list based on letter positions.**
+
+```python
+def to_boolean_list(word):
+    return [((ord(char) - 96) % 2 == 1) for char in word]
+
+# Test Cases
+print(to_boolean_list("deep"))  # ? [False, True, True, False]
+print(to_boolean_list("loves"))  # ? [False, True, False, True, True]
+print(to_boolean_list("tesh"))  # ? [False, True, True, False]
+```

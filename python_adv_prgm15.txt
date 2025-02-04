@@ -1,0 +1,104 @@
+
+**1. Anagram Function**
+
+```python
+def anagram(name, words):
+    name = name.lower().replace(" ", "")  # Remove spaces and convert to lowercase
+    name_letters = sorted(name)
+    
+    words_letters = ''.join(words).lower()
+    words_letters = sorted(words_letters)
+    
+    return name_letters == words_letters
+
+# Test Cases
+print(anagram("Justin Bieber", ["injures", "ebb", "it"]))  # ? True
+print(anagram("Natalie Portman", ["ornamental", "pita"]))  # ? True
+print(anagram("Chris Pratt", ["chirps", "rat"]))  # ? False
+print(anagram("Jeff Goldblum", ["jog", "meld", "bluffs"]))  # ? False
+```
+
+**Explanation:**
+- This function checks if the letters from the words in the array can form the given name by sorting both the name and the combined letters from the words, and comparing them.
+
+---
+
+**2. Leaderboards Function**
+
+```python
+def leaderboards(users):
+    for user in users:
+        user['trueScore'] = user['score'] + user['reputation'] * 2
+    
+    return sorted(users, key=lambda x: x['trueScore'], reverse=True)
+
+# Test Case
+print(leaderboards([
+    { "name": "a", "score": 100, "reputation": 20 },
+    { "name": "b", "score": 90, "reputation": 40 },
+    { "name": "c", "score": 115, "reputation": 30 },
+]))
+```
+
+**Explanation:**
+- This function calculates the `trueScore` for each user, which is the sum of the score and twice the reputation. Then, it sorts the users based on the `trueScore` in descending order.
+
+---
+
+**3. Hangman Function**
+
+```python
+def hangman(phrase, guessed_letters):
+    return ''.join([char if char in guessed_letters else '-' for char in phrase])
+
+# Test Cases
+print(hangman("helicopter", ["o", "e", "s"]))  # ? "-e---o--e-"
+print(hangman("tree", ["r", "t", "e"]))  # ? "tree"
+print(hangman("Python rules", ["a", "n", "p", "r", "z"]))  # ? "P----n r----"
+print(hangman("He's a very naughty boy!", ["e", "a", "y"]))  # ? "-e-y -a -e-y -a----y –y!"
+```
+
+**Explanation:**
+- The function returns a string where each guessed letter is displayed, and others are replaced with a hyphen.
+
+---
+
+**4. Collatz Sequence Function**
+
+```python
+def max_collatz(n):
+    highest = n
+    while n != 1:
+        if n % 2 == 0:
+            n = n // 2
+        else:
+            n = 3 * n + 1
+        highest = max(highest, n)
+    return highest
+
+# Test Cases
+print(max_collatz(10))  # ? 16
+print(max_collatz(32))  # ? 32
+print(max_collatz(85))  # ? 256
+```
+
+**Explanation:**
+- This function computes the Collatz sequence for a given number, and keeps track of the highest number encountered during the sequence.
+
+---
+
+**5. Digit Sort Function**
+
+```python
+def digit_sort(lst):
+    return sorted(lst, key=lambda x: (-len(str(x)), x))
+
+# Test Cases
+print(digit_sort([77, 23, 5, 7, 101]))  # ? [101, 23, 77, 5, 7]
+print(digit_sort([1, 5, 9, 2, 789, 563, 444]))  # ? [444, 563, 789, 1, 2, 5, 9]
+print(digit_sort([53219, 3772, 564, 32, 1]))  # ? [53219, 3772, 564, 32, 1]
+```
+
+**Explanation:**
+- The function first sorts the numbers by the length of their digits in descending order, and then by their actual value in ascending order in case of a tie.
+

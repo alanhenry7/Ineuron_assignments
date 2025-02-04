@@ -1,0 +1,121 @@
+
+**1. Valid Rondo Form**
+
+```python
+import re
+
+def valid_rondo(s):
+    # Check for valid structure: starts and ends with 'A', no repeated sections, and valid order
+    if not s.startswith('A') or not s.endswith('A'):
+        return False
+    
+    # Removing the A sections and check if the remaining sections are in valid order
+    sections = re.findall(r'[A-Z]', s)
+    unique_sections = set(sections)
+    
+    return len(sections) == len(unique_sections) and all(chr(65+i) == sections[i] for i in range(len(sections)))
+
+# Test Cases
+print(valid_rondo("ABACADAEAFAGAHAIAJA"))  # ? True
+print(valid_rondo("ABA"))  # ? True
+print(valid_rondo("ABBACCA"))  # ? False
+print(valid_rondo("ACAC"))  # ? False
+print(valid_rondo("A"))  # ? False
+```
+
+**Explanation:**
+- The function checks that the string starts and ends with "A" and that no letters are repeated in the sequence.
+- It ensures that sections are in the right order (A, B, C, D, etc.) without skipping any letters.
+
+---
+
+**2. Sentence Searcher**
+
+```python
+import re
+
+def sentence_searcher(txt, word):
+    # Case insensitive search for the word in the text
+    pattern = r'([^.]*' + re.escape(word) + r'[^.]*\.)'
+    match = re.search(pattern, txt, re.IGNORECASE)
+    
+    return match.group(0) if match else ""
+
+# Test Cases
+txt = "I have a cat. I have a mat. Things are going swell."
+print(sentence_searcher(txt, "have"))  # ? "I have a cat."
+print(sentence_searcher(txt, "MAT"))  # ? "I have a mat."
+print(sentence_searcher(txt, "things"))  # ? "Things are going swell."
+print(sentence_searcher(txt, "flat"))  # ? ""
+```
+
+**Explanation:**
+- The function uses regular expressions to search for the first sentence containing the word, ignoring case. It includes the period at the end of the sentence.
+
+---
+
+**3. Sum Round Function**
+
+```python
+def sum_round(n):
+    n_str = str(n)
+    rounds = []
+    for i, digit in enumerate(n_str):
+        if digit != '0':
+            rounds.append(str(int(digit) * 10 ** (len(n_str) - i - 1)))
+    return ' '.join(rounds)
+
+# Test Cases
+print(sum_round(101))  # ? "1 100"
+print(sum_round(1234))  # ? "4 30 200 1000"
+print(sum_round(54210))  # ? "10 200 4000 50000"
+```
+
+**Explanation:**
+- The function iterates through each digit of the number and generates a "round" for non-zero digits, based on their place value, and then returns the result as a string.
+
+---
+
+**4. Multiplication Table Function**
+
+```python
+def multiplication_table(n):
+    return [[(i + 1) * (j + 1) for j in range(n)] for i in range(n)]
+
+# Test Cases
+print(multiplication_table(1))  # ? [[1]]
+print(multiplication_table(3))  # ? [[1, 2, 3], [2, 4, 6], [3, 6, 9]]
+```
+
+**Explanation:**
+- This function generates an N x N multiplication table by multiplying each pair of row and column indices.
+
+---
+
+**5. Does Rhyme Function**
+
+```python
+import re
+
+def does_rhyme(line1, line2):
+    # Extracting the last word from each sentence and converting to lowercase
+    word1 = re.sub(r'[^a-zA-Z]', '', line1.split()[-1]).lower()
+    word2 = re.sub(r'[^a-zA-Z]', '', line2.split()[-1]).lower()
+    
+    # Extracting vowels from each word
+    vowels = "aeiou"
+    vowels1 = [ch for ch in word1 if ch in vowels]
+    vowels2 = [ch for ch in word2 if ch in vowels]
+    
+    return vowels1 == vowels2
+
+# Test Cases
+print(does_rhyme("Sam I am!", "Green eggs and ham."))  # ? True
+print(does_rhyme("Sam I am!", "Green eggs and HAM."))  # ? True
+print(does_rhyme("You are off to the races", "a splendid day."))  # ? False
+print(does_rhyme("and frequently do?", "you gotta move."))  # ? False
+```
+
+**Explanation:**
+- The function extracts the last word from each sentence, removes punctuation, and compares the vowels from both words. If they match, the lines rhyme.
+

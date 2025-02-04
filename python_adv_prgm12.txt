@@ -1,0 +1,135 @@
+
+**1. Meme Sum Function**
+
+```python
+def meme_sum(a, b):
+    # Convert both numbers to strings to access digits
+    a_str, b_str = str(a), str(b)
+    result = []
+    
+    # Loop through the digits, adding them together and appending to result
+    for i in range(max(len(a_str), len(b_str))):
+        digit_a = int(a_str[i]) if i < len(a_str) else 0
+        digit_b = int(b_str[i]) if i < len(b_str) else 0
+        result.append(str(digit_a + digit_b))
+    
+    # Join the list of results as a string and return it
+    return int(''.join(result))
+
+# Test Cases
+print(meme_sum(26, 39))  # ? 515
+print(meme_sum(122, 81))  # ? 1103
+print(meme_sum(1222, 30277))  # ? 31499
+```
+
+**Explanation:**
+- For each digit of both numbers, we sum the digits individually and append them to the result.
+- The result is then returned as an integer after joining the summed digits.
+
+---
+
+**2. Function to Return Next Prime Number**
+
+```python
+def is_prime(n):
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+def next_prime(n):
+    while not is_prime(n):
+        n += 1
+    return n
+
+# Test Cases
+print(next_prime(12))  # ? 13
+print(next_prime(24))  # ? 29
+print(next_prime(11))  # ? 11
+```
+
+**Explanation:**
+- The `is_prime` function checks if a number is prime.
+- The `next_prime` function iterates from `n` and returns the next prime number.
+
+---
+
+**3. Function to Calculate Average Speed**
+
+```python
+def ave_spd(uphill_time, uphill_rate, downhill_rate):
+    uphill_time_hr = uphill_time / 60  # Convert time from minutes to hours
+    uphill_distance = uphill_time_hr * uphill_rate  # Distance traveled uphill
+    downhill_time_hr = uphill_distance / downhill_rate  # Time for downhill journey
+    
+    total_time = uphill_time_hr + downhill_time_hr  # Total time for the round trip
+    total_distance = uphill_distance * 2  # Total distance for the round trip
+    
+    return total_distance // total_time  # Average speed (mph)
+
+# Test Cases
+print(ave_spd(18, 20, 60))  # ? 30
+print(ave_spd(30, 10, 30))  # ? 15
+print(ave_spd(30, 8, 24))  # ? 12
+```
+
+**Explanation:**
+- The function calculates the total time for the round trip and then uses that to find the average speed.
+
+---
+
+**4. Kempner Function**
+
+```python
+def kempner(n):
+    if n == 2:  # Special case for prime 2
+        return 2
+    i = 1
+    fact = 1
+    while True:
+        fact *= i
+        if fact % n == 0:
+            return i
+        i += 1
+
+# Test Cases
+print(kempner(6))  # ? 3
+print(kempner(10))  # ? 5
+print(kempner(2))  # ? 2
+```
+
+**Explanation:**
+- The function calculates factorials starting from 1 and checks if it's divisible by `n`. It returns the smallest integer `i` where `i!` is divisible by `n`.
+
+---
+
+**5. Function to Pack Items Into Boxes**
+
+```python
+def boxes(weights):
+    box_count = 0
+    current_box_weight = 0
+    
+    for weight in weights:
+        # Check if adding the item exceeds box weight limit
+        if current_box_weight + weight > 10:
+            box_count += 1  # Add a new box
+            current_box_weight = weight  # Start new box with current item
+        else:
+            current_box_weight += weight  # Add item to the current box
+    
+    if current_box_weight > 0:
+        box_count += 1  # Add last box if there's remaining weight
+    
+    return box_count
+
+# Test Case
+print(boxes([2, 1, 2, 5, 4, 3, 6, 1, 1, 9, 3, 2]))  # ? 5
+```
+
+**Explanation:**
+- The function goes through the weights of the items and packs them into boxes, making sure each box doesn't exceed 10 kg.
+- A new box is started whenever adding an item would exceed the weight limit.
+

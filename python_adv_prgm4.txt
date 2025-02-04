@@ -1,0 +1,93 @@
+
+**Question 1: Fast Fibonacci**
+
+```python
+def fib_fast(num):
+    a, b = 0, 1
+    for _ in range(num):
+        a, b = b, a + b
+    return a
+
+# Test Cases
+print(fib_fast(5))  # ? 5
+print(fib_fast(10))  # ? 55
+print(fib_fast(20))  # ? 6765
+print(fib_fast(50))  # ? 12586269025
+```
+
+---
+
+**Question 2: Convert characters to their hexadecimal ASCII values**
+
+```python
+def convert_to_hex(s):
+    return " ".join(format(ord(char), "x") for char in s)
+
+# Test Cases
+print(convert_to_hex("hello world"))  # ? "68 65 6c 6c 6f 20 77 6f 72 6c 64"
+print(convert_to_hex("Big Boi"))  # ? "42 69 67 20 42 6f 69"
+print(convert_to_hex("Marty Poppinson"))  # ? "4d 61 72 74 79 20 50 6f 70 70 69 6e 73 6f 6e"
+```
+
+---
+
+**Question 3: Uncensor a string by adding the missing vowels**
+
+```python
+def uncensor(censored, vowels):
+    uncensored = list(censored)
+    vowel_index = 0
+    
+    for i in range(len(uncensored)):
+        if uncensored[i] == "*":
+            uncensored[i] = vowels[vowel_index]
+            vowel_index += 1
+            
+    return "".join(uncensored)
+
+# Test Cases
+print(uncensor("Wh*r* d*d my v*w*ls g*?", "eeioeo"))  # ? "Where did my vowels go?"
+print(uncensor("abcd", ""))  # ? "abcd"
+print(uncensor("PP*RC*S", "UEAE"))  # ? "UPPERCASE"
+```
+
+---
+
+**Question 4: Get the domain name from an IP address using PTR DNS**
+
+For this problem, you would typically use the `socket` library in Python to query PTR records:
+
+```python
+import socket
+
+def get_domain(ip):
+    try:
+        return socket.gethostbyaddr(ip)[0]
+    except socket.herror:
+        return None  # If no PTR record is found
+
+# Test Cases
+print(get_domain("8.8.8.8"))  # ? "dns.google"
+print(get_domain("8.8.4.4"))  # ? "dns.google"
+```
+
+Please note that this requires network access to resolve PTR records, so running it outside of this environment might be necessary.
+
+---
+
+**Question 5: Factorial of factorials**
+
+```python
+import math
+
+def fact_of_fact(n):
+    result = 1
+    for i in range(1, n + 1):
+        result *= math.factorial(i)
+    return result
+
+# Test Cases
+print(fact_of_fact(4))  # ? 288
+print(fact_of_fact(5))  # ? 34560
+print(fact_of_fact(6))  # ? 24883200
+```

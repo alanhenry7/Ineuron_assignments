@@ -1,0 +1,79 @@
+
+**Question 1: Function to calculate the number of dots in a pentagonal shape.**
+
+```python
+def pentagonal(num):
+    return num * (3 * num - 1) // 2
+
+# Test Cases
+print(pentagonal(1))  # ? 1
+print(pentagonal(2))  # ? 6
+print(pentagonal(3))  # ? 16
+print(pentagonal(8))  # ? 141
+```
+
+---
+
+**Question 2: Function to encrypt a given input with the specified steps.**
+
+```python
+def encrypt(word):
+    vowels = {'a': '0', 'e': '1', 'i': '2', 'o': '2', 'u': '3'}
+    reversed_word = word[::-1]
+    replaced_word = ''.join(vowels.get(c, c) for c in reversed_word)
+    return replaced_word + 'aca'
+
+# Test Cases
+print(encrypt("banana"))  # ? "0n0n0baca"
+print(encrypt("karaca"))  # ? "0c0r0kaca"
+print(encrypt("burak"))   # ? "k0r3baca"
+print(encrypt("alpaca"))  # ? "0c0pl0aca"
+```
+
+---
+
+**Question 3: Function to check if a month contains a Friday 13th.**
+
+```python
+import datetime
+
+def has_friday_13(month, year):
+    return datetime.date(year, month, 13).weekday() == 4  # 4 represents Friday
+
+# Test Cases
+print(has_friday_13(3, 2020))  # ? True
+print(has_friday_13(10, 2017))  # ? True
+print(has_friday_13(1, 1985))  # ? False
+```
+
+---
+
+**Question 4: Regular expression to count bad cookies using negative lookbehind.**
+
+```python
+import re
+
+lst = ["bad cookie", "good cookie", "bad cookie", "good cookie", "good cookie"]
+pattern = r'(?<!good )cookie'
+
+bad_cookie_count = len(re.findall(pattern, " ".join(lst)))
+print(bad_cookie_count)  # ? 2
+```
+
+---
+
+**Question 5: Function to return a set of plural words if they appear more than once in the list.**
+
+```python
+def pluralize(words):
+    word_count = {}
+    for word in words:
+        word_count[word] = word_count.get(word, 0) + 1
+    
+    plural_words = {word + 's' if count > 1 else word for word, count in word_count.items()}
+    return plural_words
+
+# Test Cases
+print(pluralize(["cow", "pig", "cow", "cow"]))  # ? {"cows", "pig"}
+print(pluralize(["table", "table", "table"]))  # ? {"tables"}
+print(pluralize(["chair", "pencil", "arm"]))  # ? {"chair", "pencil", "arm"}

@@ -1,0 +1,146 @@
+
+**Question 1: Count the number of concentric layers in a rug.**
+
+```python
+def count_layers(rug):
+    layers = 0
+    while rug:
+        if rug[0] == rug[-1]:
+            layers += 1
+            rug = [row[1:-1] for row in rug[1:-1]]
+        else:
+            break
+    return layers
+
+# Test Cases
+print(count_layers([
+    "AAAA",
+    "ABBA",
+    "AAAA"
+]))  # ? 2
+
+print(count_layers([
+    "AAAAAAAAA",
+    "ABBBBBBBA",
+    "ABBAAABBA",
+    "ABBBBBBBA",
+    "AAAAAAAAA"
+]))  # ? 3
+
+print(count_layers([
+    "AAAAAAAAAAA",
+    "AABBBBBBBAA",
+    "AABCCCCCBAA",
+    "AABCAAACBAA",
+    "AABCADACBAA",
+    "AABCAAACBAA",
+    "AABCCCCCBAA",
+    "AABBBBBBBAA",
+    "AAAAAAAAAAA"
+]))  # ? 5
+```
+
+Explanation: This function counts how many times we can "peel" off layers from the rug by comparing the outer characters of each row and removing them, checking the remaining part for more layers.
+
+---
+
+**Question 2: Count unique musical styles.**
+
+```python
+def unique_styles(styles):
+    unique_styles = set()
+    for style in styles:
+        unique_styles.update(style.split(','))
+    return len(unique_styles)
+
+# Test Cases
+print(unique_styles([
+    "Dub,Dancehall",
+    "Industrial,Heavy Metal",
+    "Techno,Dubstep",
+    "Synth-pop,Euro-Disco",
+    "Industrial,Techno,Minimal"
+]))  # ? 9
+
+print(unique_styles([
+    "Soul",
+    "House,Folk",
+    "Trance,Downtempo,Big Beat,House",
+    "Deep House",
+    "Soul"
+]))  # ? 7
+```
+
+Explanation: This function splits each musical style string by commas and adds all elements to a set, which inherently eliminates duplicates, then returns the length of the set.
+
+---
+
+**Question 3: Binary search for a prime number.**
+
+```python
+def is_prime(primes, target):
+    low, high = 0, len(primes) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if primes[mid] == target:
+            return "yes"
+        elif primes[mid] < target:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return "no"
+
+# Test Cases
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+
+print(is_prime(primes, 3))  # ? "yes"
+print(is_prime(primes, 4))  # ? "no"
+print(is_prime(primes, 67))  # ? "yes"
+print(is_prime(primes, 36))  # ? "no"
+```
+
+Explanation: This function uses a binary search algorithm to check if the target number is in the list of prime numbers.
+
+---
+
+**Question 4: Count positive values raised to the nth power in a range.**
+
+```python
+def power_ranger(n, a, b):
+    count = 0
+    i = 1
+    while i ** n <= b:
+        if a <= i ** n <= b:
+            count += 1
+        i += 1
+    return count
+
+# Test Cases
+print(power_ranger(2, 49, 65))  # ? 2
+print(power_ranger(3, 1, 27))  # ? 3
+print(power_ranger(10, 1, 5))  # ? 1
+print(power_ranger(5, 31, 33))  # ? 1
+print(power_ranger(4, 250, 1300))  # ? 3
+```
+
+Explanation: This function iterates over all integers, raising them to the nth power, and checks if the result lies within the given range `[a, b]`.
+
+---
+
+**Question 5: Rearranged difference between the max and min numbers formed.**
+
+```python
+def rearranged_difference(num):
+    num_str = str(num)
+    max_num = int(''.join(sorted(num_str, reverse=True)))
+    min_num = int(''.join(sorted(num_str)))
+    return max_num - min_num
+
+# Test Cases
+print(rearranged_difference(972882))  # ? 760833
+print(rearranged_difference(3320707))  # ? 7709823
+print(rearranged_difference(90010))  # ? 90981
+```
+
+Explanation: This function converts the number into a string, sorts the digits in descending and ascending order, converts them back into integers, and returns the difference between the maximum and minimum numbers formed.
+

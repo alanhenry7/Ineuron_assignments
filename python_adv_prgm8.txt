@@ -1,0 +1,116 @@
+
+**Question 1: Check if any two adjacent words have a vowel at the end and start.**
+
+```python
+def vowel_links(txt):
+    vowels = "aeiou"
+    words = txt.split()
+    
+    for i in range(len(words) - 1):
+        if words[i][-1].lower() in vowels and words[i + 1][0].lower() in vowels:
+            return True
+    return False
+
+# Test Cases
+print(vowel_links("a very large appliance"))  # ? True
+print(vowel_links("go to edabit"))  # ? True
+print(vowel_links("an open fire"))  # ? False
+print(vowel_links("a sudden applause"))  # ? False
+```
+
+Explanation: This function checks each word in the sentence and verifies if the last character of the current word and the first character of the next word are vowels.
+
+---
+
+**Question 2: Check if the first letter occurs before the second letter in a string.**
+
+```python
+def first_before_second(txt, first, second):
+    first_index = -1
+    second_index = -1
+    for i, char in enumerate(txt):
+        if char == first and first_index == -1:
+            first_index = i
+        elif char == second and second_index == -1:
+            second_index = i
+
+    return first_index != -1 and second_index != -1 and first_index < second_index
+
+# Test Cases
+print(first_before_second("a rabbit jumps joyfully", "a", "j"))  # ? True
+print(first_before_second("knaves knew about waterfalls", "k", "w"))  # ? True
+print(first_before_second("happy birthday", "a", "y"))  # ? False
+print(first_before_second("precarious kangaroos", "k", "a"))  # ? False
+```
+
+Explanation: This function scans the string to find the indices of both letters and checks if the first letter occurs before the second one.
+
+---
+
+**Question 3: Get characters from odd/even positions.**
+
+```python
+def char_at_pos(r, s):
+    if isinstance(r, str):
+        r = list(r)
+    if s == "odd":
+        return r[::2]  # characters at odd positions
+    else:
+        return r[1::2]  # characters at even positions
+
+# Test Cases
+print(char_at_pos([2, 4, 6, 8, 10], "even"))  # ? [4, 8]
+print(char_at_pos("EDABIT", "odd"))  # ? "EAI"
+print(char_at_pos(["A", "R", "B", "I", "T", "R", "A", "R", "I", "L", "Y"], "odd"))  # ? ["A", "B", "T", "A", "I", "Y"]
+```
+
+Explanation: This function checks whether to return characters from odd or even positions based on the specifier "odd" or "even".
+
+---
+
+**Question 4: Find the greatest common divisor (GCD) of a list of numbers.**
+
+```python
+import math
+
+def GCD(lst):
+    gcd = lst[0]
+    for num in lst[1:]:
+        gcd = math.gcd(gcd, num)
+    return gcd
+
+# Test Cases
+print(GCD([10, 20, 40]))  # ? 10
+print(GCD([1, 2, 3, 100]))  # ? 1
+print(GCD([1024, 192, 2048, 512]))  # ? 64
+```
+
+Explanation: This function uses Python's built-in `math.gcd()` function to compute the GCD of the entire list of numbers.
+
+---
+
+**Question 5: Check if a number and its binary representation are palindromes.**
+
+```python
+def palindrome_type(n):
+    decimal = str(n)
+    binary = bin(n)[2:]
+    
+    if decimal == decimal[::-1] and binary == binary[::-1]:
+        return "Decimal and binary."
+    elif decimal == decimal[::-1]:
+        return "Decimal only."
+    elif binary == binary[::-1]:
+        return "Binary only."
+    else:
+        return "Neither!"
+
+# Test Cases
+print(palindrome_type(1306031))  # ? "Decimal only."
+print(palindrome_type(427787))  # ? "Binary only."
+print(palindrome_type(313))  # ? "Decimal and binary."
+print(palindrome_type(934))  # ? "Neither!"
+```
+
+Explanation: This function checks if both the decimal number and its binary representation are palindromes and returns the corresponding result.
+

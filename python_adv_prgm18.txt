@@ -1,0 +1,133 @@
+
+**1. Track Robot Movement**
+
+```python
+def track_robot(instructions):
+    x, y = 0, 0
+    for instruction in instructions:
+        direction, distance = instruction.split()
+        distance = int(distance)
+        
+        if direction == "right":
+            x += distance
+        elif direction == "left":
+            x -= distance
+        elif direction == "up":
+            y += distance
+        elif direction == "down":
+            y -= distance
+    
+    return [x, y]
+
+# Test Cases
+print(track_robot(["right 10", "up 50", "left 30", "down 10"]))  # ? [-20, 40]
+print(track_robot([]))  # ? [0, 0]
+print(track_robot(["right 100", "right 100", "up 500", "up 10000"]))  # ? [200, 10500]
+```
+
+**Explanation:**
+- The robot starts at coordinates `[0, 0]`.
+- Each instruction is parsed, and the robot moves according to the direction and distance.
+- The final position is returned as a list.
+
+---
+
+**2. Find the Longest Word in a Sentence**
+
+```python
+def find_longest(sentence):
+    words = sentence.split()
+    return max(words, key=len)
+
+# Test Cases
+print(find_longest("A thing of beauty is a joy forever."))  # ? "forever"
+print(find_longest("Forgetfulness is by all means powerless!"))  # ? "forgetfulness"
+print(find_longest('"Strengths" is the longest and most commonly used word that contains only a single vowel.'))  # ? "strengths"
+```
+
+**Explanation:**
+- The function splits the sentence into words and uses `max()` to find the longest word based on length.
+
+---
+
+**3. Interview Qualification Check**
+
+```python
+def interview(times, total_time):
+    if len(times) != 8:  # Ensure all 8 questions were attempted
+        return "disqualified"
+    
+    max_times = [5, 5, 10, 10, 15, 15, 20, 20]  # Max allowed times for each question
+    
+    # Check if any question exceeded the allowed time
+    if any(t > m for t, m in zip(times, max_times)):
+        return "disqualified"
+    
+    # Check if total time exceeds the maximum allowed time
+    if total_time > 120:
+        return "disqualified"
+    
+    return "qualified"
+
+# Test Cases
+print(interview([5, 5, 10, 10, 15, 15, 20, 20], 120))  # ? "qualified"
+print(interview([2, 3, 8, 6, 5, 12, 10, 18], 64))  # ? "qualified"
+print(interview([5, 5, 10, 10, 25, 15, 20, 20], 120))  # ? "disqualified"
+print(interview([5, 5, 10, 10, 15, 15, 20], 120))  # ? "disqualified"
+print(interview([5, 5, 10, 10, 15, 15, 20, 20], 130))  # ? "disqualified"
+```
+
+**Explanation:**
+- The function checks if all 8 questions were answered.
+- It checks if the time taken for each question is within the allowed limit.
+- It also checks if the total time exceeds 120 minutes (including buffer).
+
+---
+
+**4. Chunkify a List**
+
+```python
+def chunkify(lst, n):
+    return [lst[i:i + n] for i in range(0, len(lst), n)]
+
+# Test Cases
+print(chunkify([2, 3, 4, 5], 2))  # ? [[2, 3], [4, 5]]
+print(chunkify([2, 3, 4, 5, 6], 2))  # ? [[2, 3], [4, 5], [6]]
+print(chunkify([2, 3, 4, 5, 6, 7], 3))  # ? [[2, 3, 4], [5, 6, 7]]
+print(chunkify([2, 3, 4, 5, 6, 7], 1))  # ? [[2], [3], [4], [5], [6], [7]]
+print(chunkify([2, 3, 4, 5, 6, 7], 7))  # ? [[2, 3, 4, 5, 6, 7]]
+```
+
+**Explanation:**
+- The function splits the list into chunks of size `n`.
+- The list is sliced using a list comprehension.
+
+---
+
+**5. Extract Prices from Grocery List**
+
+```python
+import re
+
+def get_prices(grocery_list):
+    return [float(re.search(r'\$(\d+\.\d+)', item).group(1)) for item in grocery_list]
+
+# Test Cases
+print(get_prices(["salad ($4.99)"]))  # ? [4.99]
+print(get_prices([
+    "artichokes ($1.99)",
+    "rotiserrie chicken ($5.99)",
+    "gum ($0.75)"
+]))  # ? [1.99, 5.99, 0.75]
+print(get_prices([
+    "ice cream ($5.99)",
+    "banana ($0.20)",
+    "sandwich ($8.50)",
+    "soup ($1.99)"
+]))  # ? [5.99, 0.2, 8.50, 1.99]
+```
+
+**Explanation:**
+- The function uses regular expressions to extract the price from each string.
+- The prices are then converted to float and returned as a list.
+

@@ -1,0 +1,120 @@
+
+**1. Transpose Matrix**
+
+```python
+def transpose_matrix(matrix):
+    return [list(row) for row in zip(*matrix)]
+
+# Test Cases
+print(transpose_matrix([
+    [1, 1, 1],
+    [2, 2, 2],
+    [3, 3, 3]
+]))  # ? [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+print(transpose_matrix([
+    [5, 5],
+    [6, 7],
+    [9, 1]
+]))  # ? [[5, 6, 9], [5, 7, 1]]
+```
+
+**Explanation:**
+- The function uses the `zip` function to group corresponding elements from each row, and then converts the grouped tuples into lists.
+
+---
+
+**2. Validate Hex Code**
+
+```python
+import re
+
+def is_valid_hex_code(code):
+    return bool(re.match(r'^#[0-9A-Fa-f]{6}$', code))
+
+# Test Cases
+print(is_valid_hex_code("#CD5C5C"))  # ? True
+print(is_valid_hex_code("#EAECEE"))  # ? True
+print(is_valid_hex_code("#eaecee"))  # ? True
+print(is_valid_hex_code("#CD5C58C"))  # ? False
+print(is_valid_hex_code("#CD5C5Z"))  # ? False
+print(is_valid_hex_code("#CD5C&C"))  # ? False
+print(is_valid_hex_code("CD5C5C"))  # ? False
+```
+
+**Explanation:**
+- The function uses regular expressions to match the hex code format: starts with `#`, followed by exactly 6 characters that are digits or letters between `A-F` (case-insensitive).
+
+---
+
+**3. Mark Math Equations**
+
+```python
+def mark_maths(equations):
+    correct = 0
+    for eq in equations:
+        lhs, rhs = eq.split('=')
+        if eval(lhs) == int(rhs):
+            correct += 1
+    return f"{round((correct / len(equations)) * 100)}%"
+
+# Test Cases
+print(mark_maths(["2+2=4", "3+2=5", "10-3=3", "5+5=10"]))  # ? "75%"
+print(mark_maths(["1-2=-2"]))  # ? "0%"
+print(mark_maths(["2+3=5", "4+4=9", "3-1=2"]))  # ? "67%"
+```
+
+**Explanation:**
+- The function checks each equation for correctness by evaluating the left-hand side and comparing it with the right-hand side. It then calculates the percentage of correct answers.
+
+---
+
+**4. Magic Square Game**
+
+```python
+def magic_square_game(alice, bob):
+    alice_row, alice_choice = alice
+    bob_col, bob_choice = bob
+    
+    # Check if the sum of Alice's row is odd and Bob's column is even
+    if sum(int(x) for x in alice_choice) % 2 != 1:
+        return False
+    if sum(int(x) for x in bob_choice) % 2 != 0:
+        return False
+    
+    # Check if the intersection point matches
+    return alice_choice[bob_col - 1] == bob_choice[alice_row - 1]
+
+# Test Cases
+print(magic_square_game([2, "100"], [1, "101"]))  # ? False
+print(magic_square_game([2, "001"], [1, "101"]))  # ? True
+print(magic_square_game([3, "111"], [2, "011"]))  # ? True
+print(magic_square_game([1, "010"], [3, "101"]))  # ? False
+```
+
+**Explanation:**
+- The function checks the sum conditions for Alice’s row and Bob’s column.
+- Then it ensures that the number in the intersection of Alice's row and Bob's column matches.
+
+---
+
+**5. Meeting Time**
+
+```python
+def lets_meet(distance, va, vb):
+    total_velocity = va + vb
+    time_seconds = (distance * 3600) / total_velocity
+    hours = int(time_seconds // 3600)
+    minutes = int((time_seconds % 3600) // 60)
+    seconds = int(time_seconds % 60)
+    return f"{hours}h {minutes}min {seconds}s"
+
+# Test Cases
+print(lets_meet(100, 10, 30))  # ? "2h 30min 0s"
+print(lets_meet(280, 70, 80))  # ? "1h 52min 0s"
+print(lets_meet(90, 75, 65))  # ? "0h 38min 34s"
+```
+
+**Explanation:**
+- The function calculates the time it takes for both objects to meet by dividing the total distance by the combined velocity of both objects, then converts the result into hours, minutes, and seconds.
+

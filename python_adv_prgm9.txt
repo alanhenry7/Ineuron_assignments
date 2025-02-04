@@ -1,0 +1,105 @@
+
+**Question 1: Calculate the playback duration of a video given its actual duration and playback speed.**
+
+```python
+from datetime import datetime, timedelta
+
+def playback_duration(duration, speed):
+    time_format = "%H:%M:%S"
+    actual_duration = datetime.strptime(duration, time_format)
+    
+    # Convert the duration to seconds
+    total_seconds = actual_duration.hour * 3600 + actual_duration.minute * 60 + actual_duration.second
+    
+    # Adjust the duration based on the playback speed
+    adjusted_seconds = total_seconds / speed
+    
+    # Convert the adjusted seconds back to HH:MM:SS format
+    adjusted_time = str(timedelta(seconds=adjusted_seconds))
+    
+    # Ensure the format is always in HH:MM:SS
+    return adjusted_time[-8:]
+
+# Test Cases
+print(playback_duration("00:30:00", 2))  # ? "00:15:00"
+print(playback_duration("01:20:00", 1.5))  # ? "00:53:20"
+print(playback_duration("51:20:09", 0.5))  # ? "102:40:18"
+```
+
+Explanation: The function converts the input time into seconds, adjusts it based on the playback speed, and then converts it back to the correct format.
+
+---
+
+**Question 2: Find the number of cubes required for the building.**
+
+```python
+def pile_of_cubes(m):
+    n = 1
+    while (n * (n + 1) // 2) ** 2 < m:
+        n += 1
+    return n if (n * (n + 1) // 2) ** 2 == m else None
+
+# Test Cases
+print(pile_of_cubes(1071225))  # ? 45
+print(pile_of_cubes(4183059834009))  # ? 2022
+print(pile_of_cubes(16))  # ? None
+```
+
+Explanation: We need to check the cumulative sum of cubes for each number and compare it with `m`. If there's no match, return `None`.
+
+---
+
+**Question 3: Find the fulcrum of a list.**
+
+```python
+def find_fulcrum(lst):
+    for i in range(len(lst)):
+        if sum(lst[:i]) == sum(lst[i+1:]):
+            return lst[i]
+    return None
+
+# Test Cases
+print(find_fulcrum([1, 2, 4, 9, 10, -10, -9, 3]))  # ? 4
+print(find_fulcrum([9, 1, 9]))  # ? 1
+print(find_fulcrum([7, -1, 0, -1, 1, 1, 2, 3]))  # ? 0
+print(find_fulcrum([8, 8, 8, 8]))  # ? -1
+```
+
+Explanation: This function checks if there's a point in the list where the sum of elements before it is equal to the sum of elements after it.
+
+---
+
+**Question 4: Count matching pairs of socks.**
+
+```python
+from collections import Counter
+
+def sock_merchant(socks):
+    sock_counts = Counter(socks)
+    pairs = sum(count // 2 for count in sock_counts.values())
+    return pairs
+
+# Test Cases
+print(sock_merchant([10, 20, 20, 10, 10, 30, 50, 10, 20]))  # ? 3
+print(sock_merchant([50, 20, 30, 90, 30, 20, 50, 20, 90]))  # ? 4
+print(sock_merchant([]))  # ? 0
+```
+
+Explanation: This function uses `Counter` to count the occurrences of each color and calculates how many pairs can be made from those counts.
+
+---
+
+**Question 5: Sum of negative integers in a string.**
+
+```python
+import re
+
+def negative_sum(txt):
+    return sum(int(num) for num in re.findall(r'-\d+', txt))
+
+# Test Cases
+print(negative_sum("-12 13%14&-11"))  # ? -23
+print(negative_sum("22 13%14&-11-22 13 12"))  # ? -33
+```
+
+Explanation: The function uses a regular expression to find all negative integers in the string and then sums them.

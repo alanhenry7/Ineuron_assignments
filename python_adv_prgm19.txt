@@ -1,0 +1,119 @@
+
+**1. Checkerboard Generator**
+
+```python
+def checker_board(n, elem1, elem2):
+    if elem1 == elem2:
+        return "invalid"
+    
+    board = []
+    for i in range(n):
+        row = []
+        for j in range(n):
+            if (i + j) % 2 == 0:
+                row.append(elem1)
+            else:
+                row.append(elem2)
+        board.append(row)
+    
+    return board
+
+# Test Cases
+print(checker_board(2, 7, 6))  # ? [[7, 6], [6, 7]]
+print(checker_board(3, "A", "B"))  # ? [["A", "B", "A"], ["B", "A", "B"], ["A", "B", "A"]]
+print(checker_board(4, "c", "d"))  # ? [["c", "d", "c", "d"], ["d", "c", "d", "c"], ["c", "d", "c", "d"], ["d", "c", "d", "c"]]
+print(checker_board(4, "c", "c"))  # ? "invalid"
+```
+
+**Explanation:**
+- The function alternates between `elem1` and `elem2` for each row and column.
+- It checks if `elem1` and `elem2` are the same, in which case it returns "invalid."
+
+---
+
+**2. Almost Palindrome**
+
+```python
+def almost_palindrome(s):
+    count = 0
+    for i in range(len(s)//2):
+        if s[i] != s[-(i+1)]:
+            count += 1
+        if count > 1:
+            return False
+    return count == 1
+
+# Test Cases
+print(almost_palindrome("abcdcbg"))  # ? True
+print(almost_palindrome("abccia"))  # ? True
+print(almost_palindrome("abcdaaa"))  # ? False
+print(almost_palindrome("1234312"))  # ? False
+```
+
+**Explanation:**
+- The function compares the characters from both ends of the string.
+- It counts how many characters are different, and if more than one mismatch is found, it returns `False`.
+- If there is exactly one mismatch, it returns `True`.
+
+---
+
+**3. Prime Numbers Up to N**
+
+```python
+def prime_numbers(n):
+    primes = []
+    for num in range(2, n+1):
+        if all(num % i != 0 for i in range(2, int(num**0.5) + 1)):
+            primes.append(num)
+    return len(primes)
+
+# Test Cases
+print(prime_numbers(10))  # ? 4
+print(prime_numbers(20))  # ? 8
+print(prime_numbers(30))  # ? 10
+```
+
+**Explanation:**
+- The function checks each number from 2 to `n` to see if it is prime.
+- It returns the count of prime numbers up to `n`.
+
+---
+
+**4. After N Days**
+
+```python
+def after_n_days(days, n):
+    week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    return [(week[(week.index(day) + n) % 7]) for day in days]
+
+# Test Cases
+print(after_n_days(["Thursday", "Monday"], 4))  # ? ["Monday", "Friday"]
+print(after_n_days(["Sunday", "Sunday", "Sunday"], 1))  # ? ["Monday", "Monday", "Monday"]
+print(after_n_days(["Monday", "Tuesday", "Friday"], 1))  # ? ["Tuesday", "Wednesday", "Saturday"]
+```
+
+**Explanation:**
+- The function calculates the new day by adding `n` days to each day in the list and handles the week cycle using modulo arithmetic.
+
+---
+
+**5. Anonymous Name Alias Check**
+
+```python
+def is_correct_aliases(users, aliases):
+    for user, alias in zip(users, aliases):
+        first_letter = user[0]
+        alias_words = alias.split()
+        if alias_words[0][0] != first_letter or alias_words[1][0] != first_letter:
+            return False
+    return True
+
+# Test Cases
+print(is_correct_aliases(["Adrian M.", "Harriet S.", "Mandy T."], ["Amazing Artichoke", "Hopeful Hedgehog", "Marvelous Mouse"]))  # ? True
+print(is_correct_aliases(["Rachel F.", "Pam G.", "Fred Z.", "Nancy K."], ["Reassuring Rat", "Peaceful Panda", "Fantastic Frog", "Notable Nickel"]))  # ? True
+print(is_correct_aliases(["Beth T."], ["Brandishing Mimosa"]))  # ? False
+```
+
+**Explanation:**
+- The function checks if the first letter of the alias matches the first letter of the user's first name for both words in the alias.
+

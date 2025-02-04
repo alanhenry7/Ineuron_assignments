@@ -1,0 +1,107 @@
+
+**1. Show the Love Function**
+
+```python
+def show_the_love(lst):
+    smallest = min(lst)
+    total_removed = 0
+    new_lst = []
+    
+    for num in lst:
+        if num != smallest:
+            removed = num * 0.25
+            total_removed += removed
+            new_lst.append(num - removed)
+        else:
+            new_lst.append(num)
+    
+    new_lst[lst.index(smallest)] += total_removed
+    return new_lst
+
+# Test Cases
+print(show_the_love([4, 1, 4]))  # ? [3, 3, 3]
+print(show_the_love([16, 10, 8]))  # ? [12, 7.5, 14.5]
+print(show_the_love([2, 100]))  # ? [27, 75]
+```
+
+**Explanation:**
+- The function calculates 25% of each number in the list (except the smallest number) and adds the total removed to the smallest number.
+
+---
+
+**2. Letters Function**
+
+```python
+def letters(word1, word2):
+    shared = sorted(set(word1) & set(word2))
+    unique1 = sorted(set(word1) - set(word2))
+    unique2 = sorted(set(word2) - set(word1))
+    
+    return [''.join(shared), ''.join(unique1), ''.join(unique2)]
+
+# Test Cases
+print(letters("sharp", "soap"))  # ? ["aps", "hr", "o"]
+print(letters("board", "bored"))  # ? ["bdor", "a", "e"]
+print(letters("happiness", "envelope"))  # ? ["enp", "ahis", "lov"]
+print(letters("kerfuffle", "fluffy"))  # ? ["flu", "ekr", "y"]
+print(letters("match", "ham"))  # ? ["ahm", "ct", ""]
+```
+
+**Explanation:**
+- The function finds shared letters between two words, as well as unique letters in each word, sorting them alphabetically.
+
+---
+
+**3. Pairs Function**
+
+```python
+def pairs(lst):
+    return [[lst[i], lst[-(i+1)]] for i in range(len(lst)//2)]
+
+# Test Cases
+print(pairs([1, 2, 3, 4, 5, 6, 7]))  # ? [[1, 7], [2, 6], [3, 5], [4, 4]]
+print(pairs([1, 2, 3, 4, 5, 6]))  # ? [[1, 6], [2, 5], [3, 4]]
+print(pairs([5, 9, 8, 1, 2]))  # ? [[5, 2], [9, 1], [8, 8]]
+print(pairs([]))  # ? []
+```
+
+**Explanation:**
+- The function pairs the first element with the last, the second element with the second to last, and so on. If the list has an odd length, the middle element pairs with itself.
+
+---
+
+**4. Add Two Numbers (Strings)**
+
+```python
+def add_str_nums(num1, num2):
+    try:
+        return str(int(num1) + int(num2))
+    except ValueError:
+        return "-1"
+
+# Test Cases
+print(add_str_nums("4", "5"))  # ? "9"
+print(add_str_nums("abcdefg", "3"))  # ? "-1"
+print(add_str_nums("1", ""))  # ? "1"
+print(add_str_nums("1874682736267235927359283579235789257", "32652983572985729"))  # ? "1874682736267235927391936562808774986"
+```
+
+**Explanation:**
+- The function attempts to convert the string inputs to integers and adds them. If any string can't be converted to a valid integer, it returns `-1`.
+
+---
+
+**5. Unmix Strings**
+
+```python
+def unmix(string):
+    return ''.join([string[i+1] + string[i] for i in range(0, len(string), 2)])
+
+# Test Cases
+print(unmix("123456"))  # ? "214365"
+print(unmix("hTsii s aimex dpus rtni.g"))  # ? "This is a mixed up string."
+print(unmix("badce"))  # ? "abcde"
+```
+
+**Explanation:**
+- The function swaps each pair of characters in the string to unmix it.

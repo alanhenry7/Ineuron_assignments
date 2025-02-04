@@ -1,0 +1,122 @@
+
+**1. Secret HTML Class Generator**
+
+```python
+def secret(s):
+    parts = s.split('.')
+    if len(parts) == 1:
+        return f"<p>{parts[0]}</p>"
+    else:
+        return f"<p class='{ ' '.join(parts[1:]) }'></p>"
+
+# Test Cases
+print(secret("p.one.two.three"))  # ? "<p class='one two three'></p>"
+print(secret("p.one"))  # ? "<p class='one'></p>"
+print(secret("p.four.five"))  # ? "<p class='four five'></p>"
+```
+
+**Explanation:**
+- The function splits the input string by periods (`.`) and checks if there's more than one part.
+- It generates an HTML string with the classes formed by joining the parts from index 1 onward.
+
+---
+
+**2. Count Lone 1s in a Number**
+
+```python
+def count_lone_ones(n):
+    n_str = str(n)
+    count = 0
+    for i in range(1, len(n_str) - 1):
+        if n_str[i] == '1' and n_str[i-1] != '1' and n_str[i+1] != '1':
+            count += 1
+    if n_str[0] == '1' and n_str[1] != '1':
+        count += 1
+    if n_str[-1] == '1' and n_str[-2] != '1':
+        count += 1
+    return count
+
+# Test Cases
+print(count_lone_ones(101))  # ? 2
+print(count_lone_ones(1191))  # ? 1
+print(count_lone_ones(1111))  # ? 0
+print(count_lone_ones(462))  # ? 0
+```
+
+**Explanation:**
+- The function converts the number into a string and checks for `1`s that are not surrounded by other `1`s (lone `1`s).
+- It handles the first and last characters separately because they don't have both left and right neighbors.
+
+---
+
+**3. Column-Major Order 2D Array**
+
+```python
+def printGrid(rows, cols):
+    grid = [[0] * cols for _ in range(rows)]
+    num = 1
+    for col in range(cols):
+        for row in range(rows):
+            grid[row][col] = num
+            num += 1
+    return grid
+
+# Test Cases
+print(printGrid(3, 6))  # ? [[1, 4, 7, 10, 13, 16], [2, 5, 8, 11, 14, 17], [3, 6, 9, 12, 15, 18]]
+print(printGrid(5, 3))  # ? [[1, 6, 11], [2, 7, 12], [3, 8, 13], [4, 9, 14], [5, 10, 15]]
+print(printGrid(4, 1))  # ? [[1], [2], [3], [4]]
+```
+
+**Explanation:**
+- The function creates an empty 2D array and then fills the numbers in column-major order, i.e., down each column first, then move to the next column.
+
+---
+
+**4. Smallest Missing Positive Integer**
+
+```python
+def min_miss_pos(lst):
+    lst = sorted(set(lst))
+    smallest = 1
+    for num in lst:
+        if num == smallest:
+            smallest += 1
+    return smallest
+
+# Test Cases
+print(min_miss_pos([-2, 6, 4, 5, 7, -1, 1, 3, 6, -2, 9, 10, 2, 2]))  # ? 8
+print(min_miss_pos([5, 9, -2, 0, 1, 3, 9, 3, 8, 9]))  # ? 2
+print(min_miss_pos([0, 4, 4, -1, 9, 4, 5, 2, 10, 7, 6, 3, 10, 9]))  # ? 1
+```
+
+**Explanation:**
+- The function first removes duplicates and sorts the list.
+- It then checks the sequence starting from `1` to find the first missing positive integer.
+
+---
+
+**5. Pizza Points™ Rewards System**
+
+```python
+def pizza_points(customers, min_orders, min_price):
+    eligible_customers = []
+    for customer, orders in customers.items():
+        count = sum(1 for order in orders if order >= min_price)
+        if count >= min_orders:
+            eligible_customers.append(customer)
+    return eligible_customers
+
+# Test Cases
+customers = {
+    "Batman": [22, 30, 11, 17, 15, 52, 27, 12],
+    "Spider-Man": [5, 17, 30, 33, 40, 22, 26, 10, 11, 45]
+}
+
+print(pizza_points(customers, 5, 20))  # ? ["Spider-Man"]
+print(pizza_points(customers, 3, 10))  # ? ["Batman", "Spider-Man"]
+print(pizza_points(customers, 5, 100))  # ? []
+```
+
+**Explanation:**
+- The function checks how many orders each customer made that meet the minimum price.
+- If the count of valid orders is greater than or equal to the required minimum number of orders, the customer is added to the list of eligible customers.
