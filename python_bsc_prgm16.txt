@@ -1,0 +1,73 @@
+
+**Question 1: Write a function that stutters a word as if someone is struggling to read it.**
+
+```python
+def stutter(word):
+    return f"{word[:2]}... {word[:2]}... {word}?"
+
+# Test Cases
+print(stutter("incredible"))  # "in... in... incredible?"
+print(stutter("enthusiastic"))  # "en... en... enthusiastic?"
+print(stutter("outstanding"))  # "ou... ou... outstanding?"
+```
+
+---
+
+**Question 2: Create a function that takes an angle in radians and returns the corresponding angle in degrees rounded to one decimal place.**
+
+```python
+import math
+
+def radians_to_degrees(radians):
+    return round(math.degrees(radians), 1)
+
+# Test Cases
+print(radians_to_degrees(1))  # 57.3
+print(radians_to_degrees(20))  # 1145.9
+print(radians_to_degrees(50))  # 2864.8
+```
+
+---
+
+**Question 3: Establish if a given integer num is a Curzon number.**
+
+```python
+def is_curzon(num):
+    return (2**num + 1) % (2*num + 1) == 0
+
+# Test Cases
+print(is_curzon(5))  # True
+print(is_curzon(10))  # False
+print(is_curzon(14))  # True
+```
+
+---
+
+**Question 4: Given the side length x, find the area of a hexagon.**
+
+```python
+import math
+
+def area_of_hexagon(x):
+    return round((3 * math.sqrt(3) * x**2) / 2, 1)
+
+# Test Cases
+print(area_of_hexagon(1))  # 2.6
+print(area_of_hexagon(2))  # 10.4
+print(area_of_hexagon(3))  # 23.4
+```
+
+---
+
+**Question 5: Create a function that returns a base-2 (binary) representation of a base-10 (decimal) number.**
+
+```python
+def binary(num):
+    return bin(num)[2:]
+
+# Test Cases
+print(binary(1))  # "1"
+print(binary(5))  # "101"
+print(binary(10))  # "1010"
+```
+

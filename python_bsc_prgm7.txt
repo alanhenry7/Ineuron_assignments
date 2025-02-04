@@ -1,0 +1,65 @@
+
+**1. Python Program to Find Sum of Array:**
+
+```python
+def sum_of_array(arr):
+    return sum(arr)
+
+array = [int(x) for x in input("Enter the elements of the array separated by space: ").split()]
+print(f"The sum of the array is: {sum_of_array(array)}")
+```
+
+---
+
+**2. Python Program to Find the Largest Element in an Array:**
+
+```python
+def largest_element(arr):
+    return max(arr)
+
+array = [int(x) for x in input("Enter the elements of the array separated by space: ").split()]
+print(f"The largest element in the array is: {largest_element(array)}")
+```
+
+---
+
+**3. Python Program for Array Rotation:**
+
+```python
+def rotate_array(arr, d):
+    return arr[d:] + arr[:d]
+
+array = [int(x) for x in input("Enter the elements of the array separated by space: ").split()]
+d = int(input("Enter the number of positions to rotate: "))
+print(f"The rotated array is: {rotate_array(array, d)}")
+```
+
+---
+
+**4. Python Program to Split the Array and Add the First Part to the End:**
+
+```python
+def split_and_add(arr, n):
+    return arr[n:] + arr[:n]
+
+array = [int(x) for x in input("Enter the elements of the array separated by space: ").split()]
+n = int(input("Enter the position where to split the array: "))
+print(f"The array after splitting and adding the first part to the end is: {split_and_add(array, n)}")
+```
+
+---
+
+**5. Python Program to Check if Given Array is Monotonic:**
+
+```python
+def is_monotonic(arr):
+    return (all(arr[i] <= arr[i+1] for i in range(len(arr)-1)) or
+            all(arr[i] >= arr[i+1] for i in range(len(arr)-1)))
+
+array = [int(x) for x in input("Enter the elements of the array separated by space: ").split()]
+if is_monotonic(array):
+    print("The array is monotonic.")
+else:
+    print("The array is not monotonic.")
+```
+

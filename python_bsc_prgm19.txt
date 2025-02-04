@@ -1,0 +1,75 @@
+
+**Question 1: Create a function that takes a string and returns a string in which each character is repeated once.**
+
+```python
+def double_char(s):
+    return ''.join([char * 2 for char in s])
+
+# Test Cases
+print(double_char("String"))  # "SSttrriinngg"
+print(double_char("Hello World!"))  # "HHeelllloo WWoorrlldd!!"
+print(double_char("1234!_ "))  # "11223344!!__ "
+```
+
+---
+
+**Question 2: Create a function that reverses a boolean value and returns the string "boolean expected" if another variable type is given.**
+
+```python
+def reverse(value):
+    if isinstance(value, bool):
+        return not value
+    return "boolean expected"
+
+# Test Cases
+print(reverse(True))  # False
+print(reverse(False))  # True
+print(reverse(0))  # "boolean expected"
+print(reverse(None))  # "boolean expected"
+```
+
+---
+
+**Question 3: Create a function that returns the thickness (in meters) of a piece of paper after folding it n number of times.**
+
+```python
+def num_layers(n):
+    thickness_mm = 0.5 * (2 ** n)  # Initial thickness is 0.5mm, and it doubles each fold
+    return f"{thickness_mm / 1000:.6f}m"  # Convert mm to meters and format the result
+
+# Test Cases
+print(num_layers(1))  # "0.001m"
+print(num_layers(4))  # "0.008m"
+print(num_layers(21))  # "1048.576m"
+```
+
+---
+
+**Question 4: Create a function that takes a single string as argument and returns an ordered list containing the indices of all capital letters in the string.**
+
+```python
+def index_of_caps(s):
+    return [i for i, char in enumerate(s) if char.isupper()]
+
+# Test Cases
+print(index_of_caps("eDaBiT"))  # [1, 3, 5]
+print(index_of_caps("eQuINoX"))  # [1, 3, 4, 6]
+print(index_of_caps("determine"))  # []
+print(index_of_caps("STRIKE"))  # [0, 1, 2, 3, 4, 5]
+print(index_of_caps("sUn"))  # [1]
+```
+
+---
+
+**Question 5: Using list comprehensions, create a function that finds all even numbers from 1 to the given number.**
+
+```python
+def find_even_nums(num):
+    return [i for i in range(1, num + 1) if i % 2 == 0]
+
+# Test Cases
+print(find_even_nums(8))  # [2, 4, 6, 8]
+print(find_even_nums(4))  # [2, 4]
+print(find_even_nums(2))  # [2]
+```
+

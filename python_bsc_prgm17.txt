@@ -1,0 +1,72 @@
+
+**Question 1: Create a function that takes three arguments a, b, c and returns the sum of the numbers that are evenly divided by c from the range a, b inclusive.**
+
+```python
+def evenly_divisible(a, b, c):
+    return sum(i for i in range(a, b+1) if i % c == 0)
+
+# Test Cases
+print(evenly_divisible(1, 10, 20))  # 0
+print(evenly_divisible(1, 10, 2))   # 30
+print(evenly_divisible(1, 10, 3))   # 18
+```
+
+---
+
+**Question 2: Create a function that returns True if a given inequality expression is correct and False otherwise.**
+
+```python
+def correct_signs(expr):
+    return eval(expr)
+
+# Test Cases
+print(correct_signs("3 < 7 < 11"))  # True
+print(correct_signs("13 > 44 > 33 > 1"))  # False
+print(correct_signs("1 < 2 < 6 < 9 > 3"))  # True
+```
+
+---
+
+**Question 3: Create a function that replaces all the vowels in a string with a specified character.**
+
+```python
+def replace_vowels(string, char):
+    vowels = "aeiou"
+    return ''.join([c if c not in vowels else char for c in string])
+
+# Test Cases
+print(replace_vowels("the aardvark", "#"))  # "th# ##rdv#rk"
+print(replace_vowels("minnie mouse", "?"))  # "m?nn?? m??s?"
+print(replace_vowels("shakespeare", "*"))  # "sh*k*spr"
+```
+
+---
+
+**Question 4: Write a function that calculates the factorial of a number recursively.**
+
+```python
+def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+# Test Cases
+print(factorial(5))  # 120
+print(factorial(3))  # 6
+print(factorial(1))  # 1
+print(factorial(0))  # 1
+```
+
+---
+
+**Question 5: Create a function that computes the Hamming distance between two strings.**
+
+```python
+def hamming_distance(str1, str2):
+    return sum(1 for a, b in zip(str1, str2) if a != b)
+
+# Test Cases
+print(hamming_distance("abcde", "bcdef"))  # 5
+print(hamming_distance("abcde", "abcde"))  # 0
+print(hamming_distance("strong", "strung"))  # 1
+```

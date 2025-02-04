@@ -1,0 +1,140 @@
+
+**1. Python Program to Find the Sum of Elements in a List:**
+
+```python
+def sum_of_elements(lst):
+    return sum(lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The sum of elements in the list is: {sum_of_elements(lst)}")
+```
+
+---
+
+**2. Python Program to Multiply All Numbers in the List:**
+
+```python
+from functools import reduce
+
+def multiply_elements(lst):
+    return reduce(lambda x, y: x * y, lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The product of all elements in the list is: {multiply_elements(lst)}")
+```
+
+---
+
+**3. Python Program to Find the Smallest Number in a List:**
+
+```python
+def smallest_number(lst):
+    return min(lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The smallest number in the list is: {smallest_number(lst)}")
+```
+
+---
+
+**4. Python Program to Find the Largest Number in a List:**
+
+```python
+def largest_number(lst):
+    return max(lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The largest number in the list is: {largest_number(lst)}")
+```
+
+---
+
+**5. Python Program to Find the Second Largest Number in a List:**
+
+```python
+def second_largest(lst):
+    unique_lst = list(set(lst))
+    unique_lst.remove(max(unique_lst))
+    return max(unique_lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The second largest number in the list is: {second_largest(lst)}")
+```
+
+---
+
+**6. Python Program to Find N Largest Elements from a List:**
+
+```python
+import heapq
+
+def n_largest_elements(lst, n):
+    return heapq.nlargest(n, lst)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+n = int(input("Enter the number of largest elements to find: "))
+print(f"The {n} largest elements in the list are: {n_largest_elements(lst, n)}")
+```
+
+---
+
+**7. Python Program to Print Even Numbers in a List:**
+
+```python
+def even_numbers(lst):
+    return [x for x in lst if x % 2 == 0]
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The even numbers in the list are: {even_numbers(lst)}")
+```
+
+---
+
+**8. Python Program to Print Odd Numbers in a List:**
+
+```python
+def odd_numbers(lst):
+    return [x for x in lst if x % 2 != 0]
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+print(f"The odd numbers in the list are: {odd_numbers(lst)}")
+```
+
+---
+
+**9. Python Program to Remove Empty List from List:**
+
+```python
+def remove_empty_lists(lst):
+    return [x for x in lst if x]
+
+lst = [[], [1, 2], [], [3, 4], []]
+print(f"The list after removing empty lists is: {remove_empty_lists(lst)}")
+```
+
+---
+
+**10. Python Program to Clone or Copy a List:**
+
+```python
+def clone_list(lst):
+    return lst.copy()
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+cloned_lst = clone_list(lst)
+print(f"The cloned list is: {cloned_lst}")
+```
+
+---
+
+**11. Python Program to Count Occurrences of an Element in a List:**
+
+```python
+def count_occurrences(lst, element):
+    return lst.count(element)
+
+lst = [int(x) for x in input("Enter the elements of the list separated by space: ").split()]
+element = int(input("Enter the element to count occurrences of: "))
+print(f"The element {element} appears {count_occurrences(lst, element)} times in the list.")
+```
+

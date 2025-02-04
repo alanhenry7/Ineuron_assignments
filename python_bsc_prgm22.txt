@@ -1,0 +1,71 @@
+
+**Question 1: Create a function that takes three parameters and returns an ordered list with numbers in the range divisible by `n`.**
+
+```python
+def list_operation(x, y, n):
+    return [i for i in range(x, y + 1) if i % n == 0]
+
+# Test Cases
+print(list_operation(1, 10, 3))  # [3, 6, 9]
+print(list_operation(7, 9, 2))  # [8]
+print(list_operation(15, 20, 7))  # []
+```
+
+---
+
+**Question 2: Create a function that checks if the second list is the first list shifted right by 1.**
+
+```python
+def simon_says(lst1, lst2):
+    return lst1[:-1] == lst2[1:]
+
+# Test Cases
+print(simon_says([1, 2], [5, 1]))  # True
+print(simon_says([1, 2], [5, 5]))  # False
+print(simon_says([1, 2, 3, 4, 5], [0, 1, 2, 3, 4]))  # True
+print(simon_says([1, 2, 3, 4, 5], [5, 5, 1, 2, 3]))  # False
+```
+
+---
+
+**Question 3: Create a function that returns the name of the secret society.**
+
+```python
+def society_name(names):
+    return ''.join(sorted(name[0] for name in names))
+
+# Test Cases
+print(society_name(["Adam", "Sarah", "Malcolm"]))  # "AMS"
+print(society_name(["Harry", "Newt", "Luna", "Cho"]))  # "CHLN"
+print(society_name(["Phoebe", "Chandler", "Rachel", "Ross", "Monica", "Joey"]))  # "CCJMRR"
+```
+
+---
+
+**Question 4: Create a function that checks if a word is an isogram.**
+
+```python
+def is_isogram(word):
+    word = word.lower()
+    return len(word) == len(set(word))
+
+# Test Cases
+print(is_isogram("Algorism"))  # True
+print(is_isogram("PasSword"))  # False
+print(is_isogram("Consecutive"))  # False
+```
+
+---
+
+**Question 5: Create a function that checks if the characters in a string are in order.**
+
+```python
+def is_in_order(word):
+    return list(word) == sorted(word)
+
+# Test Cases
+print(is_in_order("abc"))  # True
+print(is_in_order("edabit"))  # False
+print(is_in_order("123"))  # True
+print(is_in_order("xyzz"))  # True
+```

@@ -1,0 +1,83 @@
+
+**1. Python Program to Add Two Matrices:**
+
+```python
+def add_matrices(matrix1, matrix2):
+    result = [[matrix1[i][j] + matrix2[i][j] for j in range(len(matrix1[0]))] for i in range(len(matrix1))]
+    return result
+
+matrix1 = [[int(x) for x in input(f"Enter row {i+1} of matrix 1 (separated by space): ").split()] for i in range(2)]
+matrix2 = [[int(x) for x in input(f"Enter row {i+1} of matrix 2 (separated by space): ").split()] for i in range(2)]
+
+result = add_matrices(matrix1, matrix2)
+print("The sum of the matrices is:")
+for row in result:
+    print(row)
+```
+
+---
+
+**2. Python Program to Multiply Two Matrices:**
+
+```python
+def multiply_matrices(matrix1, matrix2):
+    result = [[sum(a * b for a, b in zip(matrix1_row, matrix2_col)) for matrix2_col in zip(*matrix2)] for matrix1_row in matrix1]
+    return result
+
+matrix1 = [[int(x) for x in input(f"Enter row {i+1} of matrix 1 (separated by space): ").split()] for i in range(2)]
+matrix2 = [[int(x) for x in input(f"Enter row {i+1} of matrix 2 (separated by space): ").split()] for i in range(2)]
+
+result = multiply_matrices(matrix1, matrix2)
+print("The product of the matrices is:")
+for row in result:
+    print(row)
+```
+
+---
+
+**3. Python Program to Transpose a Matrix:**
+
+```python
+def transpose_matrix(matrix):
+    return [[matrix[j][i] for j in range(len(matrix))] for i in range(len(matrix[0]))]
+
+matrix = [[int(x) for x in input(f"Enter row {i+1} of the matrix (separated by space): ").split()] for i in range(2)]
+
+result = transpose_matrix(matrix)
+print("The transpose of the matrix is:")
+for row in result:
+    print(row)
+```
+
+---
+
+**4. Python Program to Sort Words in Alphabetic Order:**
+
+```python
+def sort_words(words):
+    return sorted(words)
+
+sentence = input("Enter a sentence: ")
+words = sentence.split()
+sorted_words = sort_words(words)
+
+print("The words in alphabetical order are:")
+print(" ".join(sorted_words))
+```
+
+---
+
+**5. Python Program to Remove Punctuation From a String:**
+
+```python
+import string
+
+def remove_punctuation(text):
+    return text.translate(str.maketrans('', '', string.punctuation))
+
+text = input("Enter a string: ")
+cleaned_text = remove_punctuation(text)
+print("The string without punctuation is:")
+print(cleaned_text)
+```
+
