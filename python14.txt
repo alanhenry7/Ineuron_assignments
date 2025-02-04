@@ -1,0 +1,45 @@
+1. What does RGBA stand for?
+
+RGBA stands for Red, Green, Blue, and Alpha. The first three represent color channels, while the Alpha channel controls transparency.
+2. From the Pillow module, how do you get the RGBA value of any image?
+
+You use a method that retrieves the color values at a specific pixel coordinate.
+Code:
+
+python
+rgba_value = image.getpixel((x, y))  # Get RGBA value at position (x, y)
+3. What is a box tuple, and how does it work?
+
+A box tuple is a four-element tuple that defines a rectangular region in an image. It consists of (left, upper, right, lower), where each value represents pixel positions to specify a cropped or selected area.
+4. How can you find out the width and height of an Image object?
+
+You access its size attribute, which returns the dimensions of the image in pixels.
+Code:
+
+python
+width, height = image.size
+5. What method would you call to get an Image object for a 100×100 image, excluding the lower-left quarter of it?
+
+You crop it using a box tuple that represents the remaining area of the image, excluding the unwanted section.
+Code:
+
+python
+cropped_image = image.crop((50, 0, 100, 100))  # Cropping the image excluding the lower-left quarter
+6. After making changes to an Image object, how could you save it as an image file?
+
+You use a method that allows saving it in a specified file format like PNG or JPEG.
+Code:
+
+python
+7. What module contains Pillow’s shape-drawing code?
+
+The ImageDraw module, which allows drawing shapes like lines, rectangles, and circles on images.
+8. Image objects do not have drawing methods. What kind of object does? How do you get this kind of object?
+
+The ImageDraw.Draw object provides drawing methods. You can get it by passing an Image object to ImageDraw.Draw.
+Code:
+
+python
+
+draw = ImageDraw.Draw(image)  # Create a drawing object
+draw.line((0, 0, 100, 100), fill="red", width=5)  # Example drawing operation
