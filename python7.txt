@@ -1,0 +1,121 @@
+### **Assignment Questions and Answers on Regular Expressions (Regex)**  
+
+1. **What is the name of the feature responsible for generating Regex objects?**  
+   The `re` module in Python is responsible for generating Regex objects.  
+
+2. **Why do raw strings often appear in Regex objects?**  
+   Raw strings (`r''`) prevent Python from treating backslashes (`\`) as escape characters, making regex patterns easier to write and read.  
+
+3. **What is the return value of the `search()` method?**  
+   The `search()` method returns a `Match` object if a match is found; otherwise, it returns `None`.  
+
+4. **From a Match item, how do you get the actual strings that match the pattern?**  
+   Use the `.group()` method on the Match object:  
+   ```python
+   match = re.search(r'\d+', 'Order 1234')
+   print(match.group())  # Output: '1234'
+   ```  
+
+5. **In the regex created from `r'(\d\d\d)-(\d\d\d-\d\d\d\d)'`, what does each group cover?**  
+   - **Group 0**: The entire match (e.g., `'123-456-7890'`).  
+   - **Group 1**: The first set of digits (`\d\d\d`) → `'123'`.  
+   - **Group 2**: The second set (`\d\d\d-\d\d\d\d`) → `'456-7890'`.  
+
+6. **How can you tell a regex that you want it to fit real parentheses and periods?**  
+   Use a **backslash (`\`)** to escape special characters:  
+   ```python
+   re.compile(r'\(Hello\)\.')  # Matches '(Hello).'
+   ```  
+
+7. **The `findall()` method returns a string list or a list of string tuples. What causes it to return one of the two options?**  
+   - If **no capturing groups** are used, it returns a list of strings.  
+   - If **capturing groups** (`()`) are used, it returns a list of tuples containing the captured groups.  
+
+8. **In standard expressions, what does the `|` character mean?**  
+   The `|` character acts as an **OR operator**, allowing multiple options in a pattern.  
+   ```python
+   re.search(r'cat|dog', 'I have a cat.')  # Matches 'cat'
+   ```  
+
+9. **In regular expressions, what does the `.` character stand for?**  
+   The `.` character matches **any single character except a newline**.  
+
+10. **What is the difference between `+` and `*` in regular expressions?**  
+    - `*` **Matches 0 or more** occurrences.  
+    - `+` **Matches 1 or more** occurrences.  
+    ```python
+    re.search(r'go*d', 'gd')   # Matches (zero 'o')
+    re.search(r'go+d', 'gd')   # Doesn't match (requires at least one 'o')
+    ```  
+
+11. **What is the difference between `{4}` and `{4,5}` in a regular expression?**  
+    - `{4}` matches **exactly** 4 occurrences.  
+    - `{4,5}` matches **between** 4 and 5 occurrences.  
+
+12. **What do `\d`, `\w`, and `\s` signify in regular expressions?**  
+    - `\d` → Any **digit** (`0-9`).  
+    - `\w` → Any **word character** (alphanumeric + `_`).  
+    - `\s` → Any **whitespace character** (spaces, tabs, newlines).  
+
+13. **What do `\D`, `\W`, and `\S` signify in regular expressions?**  
+    - `\D` → Any **non-digit** character.  
+    - `\W` → Any **non-word** character.  
+    - `\S` → Any **non-whitespace** character.  
+
+14. **What is the difference between `.*?` and `.*`?**  
+    - `.*` → **Greedy** match (matches as much as possible).  
+    - `.*?` → **Non-greedy** match (matches as little as possible).  
+
+15. **What is the syntax for matching both numbers and lowercase letters with a character class?**  
+    Use a **character set**: `[0-9a-z]` or `[a-z\d]`.  
+
+16. **How do you make a regex case-insensitive?**  
+    Pass `re.IGNORECASE` (`re.I`) as a flag:  
+    ```python
+    re.compile(r'hello', re.IGNORECASE)
+    ```  
+
+17. **What does the `.` character normally match? What does it match if `re.DOTALL` is passed as the second argument in `re.compile()`?**  
+    - Normally, `.` matches any character **except** a newline (`\n`).  
+    - With `re.DOTALL`, `.` matches **any character including newlines**.  
+
+18. **If `numReg = re.compile(r'\d+')`, what will `numReg.sub('X', '11 drummers, 10 pipers, five rings, 4 hens')` return?**  
+    ```python
+    'X drummers, X pipers, five rings, X hens'
+    ```  
+
+19. **What does passing `re.VERBOSE` as the second argument to `re.compile()` allow you to do?**  
+    It allows **multiline regex patterns with comments** for better readability.  
+    ```python
+    re.compile(r'''
+        \d{3}   # Area code
+        -       # Separator
+        \d{3}   # First 3 digits
+        -       # Separator
+        \d{4}   # Last 4 digits
+    ''', re.VERBOSE)
+    ```  
+
+20. **Regex to match numbers with commas for every three digits?**  
+    ```python
+    re.compile(r'^\d{1,3}(,\d{3})*$')
+    ```  
+    **Matches:** `'42'`, `'1,234'`, `'6,368,745'`  
+    **Doesn't Match:** `'12,34,567'`, `'1234'`  
+
+21. **Regex to match a full name where the last name is Watanabe?**  
+    ```python
+    re.compile(r'^[A-Z][a-zA-Z]*\sWatanabe$')
+    ```  
+    **Matches:** `'Haruto Watanabe'`, `'Alice Watanabe'`, `'RoboCop Watanabe'`  
+    **Doesn't Match:** `'haruto Watanabe'`, `'Mr. Watanabe'`, `'Watanabe'`, `'Haruto watanabe'`  
+
+22. **Regex to match sentences following the pattern `[Alice/Bob/Carol] [eats/pets/throws] [apples/cats/baseballs].`**  
+    ```python
+    re.compile(r'^(Alice|Bob|Carol) (eats|pets|throws) (apples|cats|baseballs)\.$', re.IGNORECASE)
+    ```  
+    **Matches:** `'Alice eats apples.'`, `'Bob pets cats.'`, `'Carol throws baseballs.'`, `'Alice throws Apples.'`, `'BOB EATS CATS.'`  
+    **Doesn't Match:** `'RoboCop eats apples.'`, `'ALICE THROWS FOOTBALLS.'`, `'Carol eats 7 cats.'`  
+
+---
+
